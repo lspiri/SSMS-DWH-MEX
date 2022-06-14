@@ -184,9 +184,6 @@ begin
 		where archivo is null
 			or left(archivo,2) not in ('MF', 'MC')
 
-		select archivo from #tmpArchivo
-		return
-
 		-- Validar Si hay Archivos
 		if not exists( select 1 from #tmpArchivo where archivo like '%.xls%')
 			begin
