@@ -16,6 +16,7 @@ begin
 	-- Description:	Load Deduccion Nominas
 	-- =============================================
 	-- 14/06/2022 - Version Inicial
+	-- 29/06/2022 - LS - Ajuste para mover archivo No Procesados / Error
 
 	set nocount on
 
@@ -24,7 +25,8 @@ begin
 		declare @msg varchar(500), @msgLog varchar(500), @cant numeric(10),
 			@dir varchar(255), @path varchar(255), @Cmd varchar(255),
 			@archivo varchar(255), @src varchar(255), @sql varchar(2000),
-			@srv varchar(255), @proceso varchar(30), @periodo varchar(6)
+			@srv varchar(255), @proceso varchar(30), @periodo varchar(6),
+			@bError bit = 0
 
 		-- drop table #tmpArchivo
 		create table #tmpArchivo(id int identity, archivo varchar(255))
@@ -209,57 +211,62 @@ begin
 			where proceso = @proceso
 				and procesado = 'N'
 
-			declare lc_cursor cursor for
-			select archivo,
-				@dir + archivo as path
-			from #tmpArchivo
-			order by 1
+		commit transaction
+
+		declare lc_cursor cursor for
+		select archivo,
+			@dir + archivo as path
+		from #tmpArchivo
+		order by 1
 		
-			open lc_cursor
-			fetch next from lc_cursor into @archivo, @path
-			while @@fetch_status = 0
-				begin
-					set @src = etl.fn_getParametroGral('EXCEL-SRC') + ';HDR=Yes;IMEX=1;FMT=Fixed;Database='+@path
+		open lc_cursor
+		fetch next from lc_cursor into @archivo, @path
+		while @@fetch_status = 0
+			begin
+				set @src = etl.fn_getParametroGral('EXCEL-SRC') + ';HDR=Yes;IMEX=1;FMT=Fixed;Database='+@path
 
-					set @sql = '
-						insert into #ConceptoEmpleados (sociedad, cia_adecco, nombre_cia, proceso, descr_proceso, tipo_empleado, anio_proceso, 
-							num_per_proceso, fecha_inicio_proceso, fecha_fin_proceso, mes_contable_proceso, num_sem_proceso, 
-							perner, numero_empleado, paterno_empleado, materno_empleado, nombre_empleado, nss, area_personal, area_personal1, 
-							registro_patronal, fecha_ingreso, fecha_antiguedad, division, descr_division, 
-							subdivision, descr_subdivision, descr_centro_costo, centro_costo, concepto, 
-							descr_concepto, variable_tiempo, importe) 
-						SELECT sociedad, cia_adecco, nombre_cia, proceso, descr_proceso, tipo_empleado, anio_proceso, 
-							num_per_proceso, fecha_inicio_proceso, fecha_fin_proceso, mes_contable_proceso, num_sem_proceso, 
-							perner, numero_empleado, paterno_empleado, materno_empleado, nombre_empleado, nss, area_personal, area_personal1, 
-							registro_patronal, fecha_ingreso, fecha_antiguedad, division, descr_division, 
-							subdivision, descr_subdivision, descr_centro_costo, centro_costo, concepto, 
-							descr_concepto, variable_tiempo, importe
-						FROM OPENROWSET('''+@srv+''', '''+@src+''', ''SELECT * FROM [Info$]'') X
-						WHERE 1=1 and cia_adecco is not null'
+				set @sql = '
+					insert into #ConceptoEmpleados (sociedad, cia_adecco, nombre_cia, proceso, descr_proceso, tipo_empleado, anio_proceso, 
+						num_per_proceso, fecha_inicio_proceso, fecha_fin_proceso, mes_contable_proceso, num_sem_proceso, 
+						perner, numero_empleado, paterno_empleado, materno_empleado, nombre_empleado, nss, area_personal, area_personal1, 
+						registro_patronal, fecha_ingreso, fecha_antiguedad, division, descr_division, 
+						subdivision, descr_subdivision, descr_centro_costo, centro_costo, concepto, 
+						descr_concepto, variable_tiempo, importe) 
+					SELECT sociedad, cia_adecco, nombre_cia, proceso, descr_proceso, tipo_empleado, anio_proceso, 
+						num_per_proceso, fecha_inicio_proceso, fecha_fin_proceso, mes_contable_proceso, num_sem_proceso, 
+						perner, numero_empleado, paterno_empleado, materno_empleado, nombre_empleado, nss, area_personal, area_personal1, 
+						registro_patronal, fecha_ingreso, fecha_antiguedad, division, descr_division, 
+						subdivision, descr_subdivision, descr_centro_costo, centro_costo, concepto, 
+						descr_concepto, variable_tiempo, importe
+					FROM OPENROWSET('''+@srv+''', '''+@src+''', ''SELECT * FROM [Info$]'') X
+					WHERE 1=1 and cia_adecco is not null'
 
-					begin try
-						exec (@sql)
-						set @cant = @@rowCount
-						set @msg = 'Load Archivo: ' + @archivo + ' - Ins: ' + cast(@cant as varchar); exec etl.prc_Logging @idBatch, @msg
-					end try
-					begin catch
-						set @cant = 0
-						set @msg = 'Error al Cargar Archivo: ' + @archivo + ' - Msg: ' + isnull(ERROR_MESSAGE(),'<null>')
-						exec etl.prc_Logging @idBatch, @msg
-					end catch
+				begin try
+					exec (@sql)
+					set @cant = @@rowCount
+					set @msg = 'Load Archivo: ' + @archivo + ' - Ins: ' + cast(@cant as varchar); exec etl.prc_Logging @idBatch, @msg
+				end try
+				begin catch
+					set @cant = 0
+					set @msg = 'Error al Cargar Archivo: ' + @archivo + ' - Msg: ' + isnull(ERROR_MESSAGE(),'<null>')
+					exec etl.prc_Logging @idBatch, @msg
+					set @bError = 1
+				end catch
 
-					if @cant > 0 
-						begin
-							insert into stg.ST_CONTROL_ARCHIVOS (
-								periodo, proceso, archivo, path, registros, procesado)
-							values ( @periodo, @proceso, @path, @dir, @cant, 'N')
-						end
+				insert into stg.ST_CONTROL_ARCHIVOS (
+					periodo, proceso, archivo, path, registros, 
+					procesado)
+				values ( @periodo, @proceso, @path, @dir, @cant, 
+					case when @bError = 1 then 'E' else 'N' end)
+					
 
-					-- next
-					fetch next from lc_cursor into @archivo, @path
-				end
-			close lc_cursor
-			deallocate lc_cursor
+				-- next
+				fetch next from lc_cursor into @archivo, @path
+			end
+		close lc_cursor
+		deallocate lc_cursor
+
+		begin transaction
 
 			set @msg = '- Carga Stage: '; exec etl.prc_Logging @idBatch, @msg
 			
@@ -322,7 +329,10 @@ begin
 		if @cant > 0
 			return 1
 		else
-			return 0
+			if @bError = 1 
+				return -1
+			else
+				return 0
 
 	end try
 
