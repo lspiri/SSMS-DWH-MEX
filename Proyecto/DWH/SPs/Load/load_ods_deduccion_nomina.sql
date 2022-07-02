@@ -17,6 +17,7 @@ begin
 	-- =============================================
 	-- 14/06/2022 - Version Inicial
 	-- 29/06/2022 - LS - Ajuste para mover archivo No Procesados / Error
+	-- 02/07/2022 - LS - Ajuste Control Archivos
 
 	set nocount on
 
@@ -186,6 +187,18 @@ begin
 		where archivo is null
 			or left(archivo,2) not in ('MF', 'MC')
 
+		-------------------------------------------
+		-- PROCESAR ARCHIVOS 
+		-------------------------------------------
+		begin transaction
+
+			update stg.ST_CONTROL_ARCHIVOS 
+			set procesado = 'X'
+			where proceso = @proceso
+				and procesado in ('N','E')
+
+		commit transaction
+
 		-- Validar Si hay Archivos
 		if not exists( select 1 from #tmpArchivo where archivo like '%.xls%')
 			begin
@@ -194,24 +207,6 @@ begin
 				exec etl.prc_Logging @idBatch, @msgLog
 				return 0
 			end
-
-		-------------------------------------------
-		-- PROCESAR ARCHIVOS 
-		-------------------------------------------
-		begin transaction
-
-			-- Control Carga Archivos
-			delete stg.ST_CONTROL_ARCHIVOS 
-			where proceso = @proceso
-				and periodo = @periodo
-				and procesado <> 'S'
-
-			update stg.ST_CONTROL_ARCHIVOS 
-			set procesado = 'X'
-			where proceso = @proceso
-				and procesado = 'N'
-
-		commit transaction
 
 		declare lc_cursor cursor for
 		select archivo,
