@@ -1,0 +1,1946 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/4/2014 2:15:13 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ADECCOSQL5"
+  DTS:CreatorName="ADECCOSQL5\luciano.silvera"
+  DTS:DelayValidation="True"
+  DTS:DTSID="{BA7C2D80-DC3D-493B-8355-5C727548B582}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="FT_PL_Opportunities"
+  DTS:PackageType="5"
+  DTS:VersionBuild="111"
+  DTS:VersionGUID="{6504E9B9-71CA-47D8-8FC8-06F177AFAFDB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{93A3737C-BB9C-43F7-8C0B-53A9D4BCA136}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vFechaProceso">
+      <DTS:VariableValue
+        DTS:DataType="7">6/10/2022 9:24:22 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{769EFB44-6DEA-4E3C-B85D-4105E3727D60}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vIdBatch">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{90C482B9-0343-46B0-AE90-D30C2722BB33}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vIdMes">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{845392F6-43BA-48CB-9B1C-09359D97FBDA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vProceso">
+      <DTS:VariableValue
+        DTS:DataType="8">FT_PL_OPPORTUNITIES</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5F9D6200-3F63-4307-BAC2-644437245121}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vRtn">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Cargar Stage (Opps)"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{1ff6ef0e-c678-4e05-b32b-e5b70543eded}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cargar Stage (Opps)"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          engineThreads="5"
+          version="1">
+          <components>
+            <component
+              refId="Package\Cargar Stage (Opps)\Carga Stage"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Carga Stage"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stg].[ST_FT_PL_OPPORTUNITIES]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar Stage (Opps)\Carga Stage.Connections[OleDbConnection]"
+                  connectionManagerID="{C978FAC7-8888-40C7-8E55-7F76F377E886}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Cod_Pais]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Cod_Pais"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[COD_PAIS]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Cod_Pais]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Pais]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="Pais"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[PAIS]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Pais]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[OpportunityId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="OpportunityId"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[OPPORTUNITYID]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[OpportunityId]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Guid_Opp]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Guid_Opp"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[GUID_OPP]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Guid_Opp]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Fecha_Creacion]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha_Creacion"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_CREACION]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Fecha_Creacion]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Fecha_Modificacion]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha_Modificacion"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_MODIFICACION]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Fecha_Modificacion]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Fecha_Cierre]"
+                      cachedDataType="dbDate"
+                      cachedName="Fecha_Cierre"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_CIERRE]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Fecha_Cierre]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Ult_Modif_Stage]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Ult_Modif_Stage"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[ULT_MODIF_STAGE]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Ult_Modif_Stage]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Nombre_Opp]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Nombre_Opp"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_OPP]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Nombre_Opp]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Propietario_Opp]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Propietario_Opp"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[PROPIETARIO_OPP]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Propietario_Opp]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Cod_Moneda]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Cod_Moneda"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[COD_MONEDA]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Cod_Moneda]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[MB_Previsto_Porc]"
+                      cachedDataType="numeric"
+                      cachedName="MB_Previsto_Porc"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[MB_PREVISTO_PORC]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[MB_Previsto_Porc]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[MB_Previsto_Imp]"
+                      cachedDataType="numeric"
+                      cachedName="MB_Previsto_Imp"
+                      cachedPrecision="18"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[MB_PREVISTO_IMP]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[MB_Previsto_Imp]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Importe]"
+                      cachedDataType="numeric"
+                      cachedName="Importe"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[IMPORTE]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Importe]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Cantidad_Opp]"
+                      cachedDataType="numeric"
+                      cachedName="Cantidad_Opp"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[CANTIDAD_OPP]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Cantidad_Opp]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Venta_Potencial]"
+                      cachedDataType="r8"
+                      cachedName="Venta_Potencial"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[VENTA_POTENCIAL]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Venta_Potencial]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Tipo_Opp]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Tipo_Opp"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[TIPO_OPP]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Tipo_Opp]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Etapa_Opp]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Etapa_Opp"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[ETAPA_OPP]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Etapa_Opp]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Tipo_Reg_Opp]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Tipo_Reg_Opp"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[TIPO_REG_OPP]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Tipo_Reg_Opp]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Propuesta_Enviada]"
+                      cachedDataType="i4"
+                      cachedName="Propuesta_Enviada"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[PROPUESTA_ENVIADA]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Propuesta_Enviada]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Fecha_Envio_Propuesta]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha_Envio_Propuesta"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_ENVIO_PROPUESTA]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Fecha_Envio_Propuesta]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Probabilidad]"
+                      cachedDataType="numeric"
+                      cachedName="Probabilidad"
+                      cachedPrecision="3"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[PROBABILIDAD]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Probabilidad]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Opp_Borrada]"
+                      cachedDataType="i4"
+                      cachedName="Opp_Borrada"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[OPP_BORRADA]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Opp_Borrada]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Opp_Ganada]"
+                      cachedDataType="i4"
+                      cachedName="Opp_Ganada"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[OPP_GANADA]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Opp_Ganada]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Segmento_Local]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Segmento_Local"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[SEGMENTO_LOCAL]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Segmento_Local]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Razon_GP]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4000"
+                      cachedName="Razon_GP"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[RAZON_GP]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Razon_GP]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Razon_GP_Comment]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4000"
+                      cachedName="Razon_GP_Comment"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[RAZON_GP_COMMENT]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Razon_GP_Comment]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Nombre_Cuenta]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Nombre_Cuenta"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CUENTA]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Nombre_Cuenta]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Cod_Sucursal]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Cod_Sucursal"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[COD_SUCURSAL]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Cod_Sucursal]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Sucursal]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Sucursal"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[SUCURSAL]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Sucursal]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Servicio]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Servicio"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[SERVICIO]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Servicio]" />
+                    <inputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].Columns[Subservicio]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Subservicio"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[SUBSERVICIO]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Subservicio]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_CARGA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="FECHA_CARGA" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[COD_PAIS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="COD_PAIS" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[PAIS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="PAIS" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[OPPORTUNITYID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="OPPORTUNITYID" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[GUID_OPP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="GUID_OPP" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_CREACION]"
+                      dataType="dbTimeStamp"
+                      name="FECHA_CREACION" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_MODIFICACION]"
+                      dataType="dbTimeStamp"
+                      name="FECHA_MODIFICACION" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_CIERRE]"
+                      dataType="dbTimeStamp"
+                      name="FECHA_CIERRE" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[ANTIGUEDAD]"
+                      dataType="i4"
+                      name="ANTIGUEDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[ULT_MODIF_STAGE]"
+                      dataType="dbTimeStamp"
+                      name="ULT_MODIF_STAGE" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_OPP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NOMBRE_OPP" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[PROPIETARIO_OPP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="PROPIETARIO_OPP" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[COD_MONEDA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="COD_MONEDA" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[MB_PREVISTO_PORC]"
+                      dataType="numeric"
+                      name="MB_PREVISTO_PORC"
+                      precision="24"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[MB_PREVISTO_IMP]"
+                      dataType="numeric"
+                      name="MB_PREVISTO_IMP"
+                      precision="24"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[IMPORTE]"
+                      dataType="numeric"
+                      name="IMPORTE"
+                      precision="24"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[CANTIDAD_OPP]"
+                      dataType="numeric"
+                      name="CANTIDAD_OPP"
+                      precision="24"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[VENTA_POTENCIAL]"
+                      dataType="r8"
+                      name="VENTA_POTENCIAL" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[TIPO_OPP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TIPO_OPP" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[ETAPA_OPP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="ETAPA_OPP" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[TIPO_REG_OPP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TIPO_REG_OPP" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[PROPUESTA_ENVIADA]"
+                      dataType="i4"
+                      name="PROPUESTA_ENVIADA" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_ENVIO_PROPUESTA]"
+                      dataType="dbTimeStamp"
+                      name="FECHA_ENVIO_PROPUESTA" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[PROBABILIDAD]"
+                      dataType="numeric"
+                      name="PROBABILIDAD"
+                      precision="24"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[OPP_BORRADA]"
+                      dataType="i4"
+                      name="OPP_BORRADA" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[OPP_GANADA]"
+                      dataType="i4"
+                      name="OPP_GANADA" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[SEGMENTO_LOCAL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="SEGMENTO_LOCAL" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[RAZON_GP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4000"
+                      name="RAZON_GP" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[RAZON_GP_COMMENT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4000"
+                      name="RAZON_GP_COMMENT" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NOMBRE_CUENTA" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[COD_SUCURSAL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="COD_SUCURSAL" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[SUCURSAL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="SUCURSAL" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[SERVICIO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="SERVICIO" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[SUBSERVICIO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="SUBSERVICIO" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar Stage (Opps)\Carga Stage.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Stage (Opps)\Carga Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\Carga Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Stage (Opps)\Carga Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Stage (Opps)\OPPs"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OPPs"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT op.Cod_Pais, op.Pais, op.OpportunityId, op.Guid_Opp, op.Fecha_Creacion, op.Fecha_Modificacion, op.Fecha_Cierre,  op.Ult_Modif_Stage, op.Nombre_Opp, op.Servicio, op.Subservicio, op.Propietario_Opp, op.Cod_Moneda, op.MB_Previsto_Porc, op.MB_Previsto_Imp, op.Importe, op.Cantidad_Opp, op.Venta_Potencial, op.Tipo_Opp, op.Etapa_Opp, op.Tipo_Reg_Opp, op.Propuesta_Enviada, op.Fecha_Envio_Propuesta, op.Probabilidad, op.Opp_Borrada, op.Opp_Ganada, op.Segmento_Local, op.Razon_GP, op.Razon_GP_Comment, op.Nombre_Cuenta, op.Cod_Sucursal, op.Sucursal
+FROM dbo.vw_mx_ft_rpt_oportunidad_sf op</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar Stage (Opps)\OPPs.Connections[OleDbConnection]"
+                  connectionManagerID="{8C8B2F7F-FCDF-4D91-9B18-ABF903AFFACE}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SrcSF]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Cod_Pais]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Cod_Pais]"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Cod_Pais]"
+                      name="Cod_Pais"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Pais]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Pais]"
+                      length="9"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Pais]"
+                      name="Pais"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[OpportunityId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[OpportunityId]"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[OpportunityId]"
+                      name="OpportunityId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Guid_Opp]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Guid_Opp]"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Guid_Opp]"
+                      name="Guid_Opp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Fecha_Creacion]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Fecha_Creacion]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Fecha_Creacion]"
+                      name="Fecha_Creacion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Fecha_Modificacion]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Fecha_Modificacion]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Fecha_Modificacion]"
+                      name="Fecha_Modificacion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Fecha_Cierre]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Fecha_Cierre]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Fecha_Cierre]"
+                      name="Fecha_Cierre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Ult_Modif_Stage]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Ult_Modif_Stage]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Ult_Modif_Stage]"
+                      name="Ult_Modif_Stage"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Nombre_Opp]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Nombre_Opp]"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Nombre_Opp]"
+                      name="Nombre_Opp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Propietario_Opp]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Propietario_Opp]"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Propietario_Opp]"
+                      name="Propietario_Opp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Cod_Moneda]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Cod_Moneda]"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Cod_Moneda]"
+                      name="Cod_Moneda"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[MB_Previsto_Porc]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[MB_Previsto_Porc]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[MB_Previsto_Porc]"
+                      name="MB_Previsto_Porc"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[MB_Previsto_Imp]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[MB_Previsto_Imp]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[MB_Previsto_Imp]"
+                      name="MB_Previsto_Imp"
+                      precision="18"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Importe]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Importe]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Importe]"
+                      name="Importe"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Cantidad_Opp]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Cantidad_Opp]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Cantidad_Opp]"
+                      name="Cantidad_Opp"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Venta_Potencial]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Venta_Potencial]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Venta_Potencial]"
+                      name="Venta_Potencial"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Tipo_Opp]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Tipo_Opp]"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Tipo_Opp]"
+                      name="Tipo_Opp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Etapa_Opp]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Etapa_Opp]"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Etapa_Opp]"
+                      name="Etapa_Opp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Tipo_Reg_Opp]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Tipo_Reg_Opp]"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Tipo_Reg_Opp]"
+                      name="Tipo_Reg_Opp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Propuesta_Enviada]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Propuesta_Enviada]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Propuesta_Enviada]"
+                      name="Propuesta_Enviada"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Fecha_Envio_Propuesta]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Fecha_Envio_Propuesta]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Fecha_Envio_Propuesta]"
+                      name="Fecha_Envio_Propuesta"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Probabilidad]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Probabilidad]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Probabilidad]"
+                      name="Probabilidad"
+                      precision="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Opp_Borrada]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Opp_Borrada]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Opp_Borrada]"
+                      name="Opp_Borrada"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Opp_Ganada]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Opp_Ganada]"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Opp_Ganada]"
+                      name="Opp_Ganada"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Segmento_Local]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Segmento_Local]"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Segmento_Local]"
+                      name="Segmento_Local"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Razon_GP]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Razon_GP]"
+                      length="4000"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Razon_GP]"
+                      name="Razon_GP"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Razon_GP_Comment]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Razon_GP_Comment]"
+                      length="4000"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Razon_GP_Comment]"
+                      name="Razon_GP_Comment"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Nombre_Cuenta]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Nombre_Cuenta]"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Nombre_Cuenta]"
+                      name="Nombre_Cuenta"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Cod_Sucursal]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Cod_Sucursal]"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Cod_Sucursal]"
+                      name="Cod_Sucursal"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Sucursal]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Sucursal]"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Sucursal]"
+                      name="Sucursal"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Servicio]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Servicio]"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Servicio]"
+                      name="Servicio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Subservicio]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Subservicio]"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].Columns[Subservicio]"
+                      name="Subservicio"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Cod_Pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Cod_Pais" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="Pais" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[OpportunityId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="OpportunityId" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Guid_Opp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Guid_Opp" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Fecha_Creacion]"
+                      dataType="dbTimeStamp"
+                      name="Fecha_Creacion" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Fecha_Modificacion]"
+                      dataType="dbTimeStamp"
+                      name="Fecha_Modificacion" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Fecha_Cierre]"
+                      dataType="dbDate"
+                      name="Fecha_Cierre" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Ult_Modif_Stage]"
+                      dataType="dbTimeStamp"
+                      name="Ult_Modif_Stage" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Nombre_Opp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Nombre_Opp" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Propietario_Opp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Propietario_Opp" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Cod_Moneda]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Cod_Moneda" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[MB_Previsto_Porc]"
+                      dataType="numeric"
+                      name="MB_Previsto_Porc"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[MB_Previsto_Imp]"
+                      dataType="numeric"
+                      name="MB_Previsto_Imp"
+                      precision="18" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Importe]"
+                      dataType="numeric"
+                      name="Importe"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Cantidad_Opp]"
+                      dataType="numeric"
+                      name="Cantidad_Opp"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Venta_Potencial]"
+                      dataType="r8"
+                      name="Venta_Potencial" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Tipo_Opp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Tipo_Opp" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Etapa_Opp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Etapa_Opp" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Tipo_Reg_Opp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Tipo_Reg_Opp" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Propuesta_Enviada]"
+                      dataType="i4"
+                      name="Propuesta_Enviada" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Fecha_Envio_Propuesta]"
+                      dataType="dbTimeStamp"
+                      name="Fecha_Envio_Propuesta" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Probabilidad]"
+                      dataType="numeric"
+                      name="Probabilidad"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Opp_Borrada]"
+                      dataType="i4"
+                      name="Opp_Borrada" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Opp_Ganada]"
+                      dataType="i4"
+                      name="Opp_Ganada" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Segmento_Local]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Segmento_Local" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Razon_GP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4000"
+                      name="Razon_GP" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Razon_GP_Comment]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4000"
+                      name="Razon_GP_Comment" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Nombre_Cuenta]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Nombre_Cuenta" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Cod_Sucursal]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Cod_Sucursal" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Sucursal]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Sucursal" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Servicio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Servicio" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output].ExternalColumns[Subservicio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Subservicio" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Cod_Pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Cod_Pais]"
+                      name="Cod_Pais" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Pais]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Pais]"
+                      name="Pais" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[OpportunityId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[OpportunityId]"
+                      name="OpportunityId" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Guid_Opp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Guid_Opp]"
+                      name="Guid_Opp" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Fecha_Creacion]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Fecha_Creacion]"
+                      name="Fecha_Creacion" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Fecha_Modificacion]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Fecha_Modificacion]"
+                      name="Fecha_Modificacion" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Fecha_Cierre]"
+                      dataType="dbDate"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Fecha_Cierre]"
+                      name="Fecha_Cierre" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Ult_Modif_Stage]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Ult_Modif_Stage]"
+                      name="Ult_Modif_Stage" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Nombre_Opp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Nombre_Opp]"
+                      name="Nombre_Opp" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Servicio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Servicio]"
+                      name="Servicio" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Subservicio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Subservicio]"
+                      name="Subservicio" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Propietario_Opp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Propietario_Opp]"
+                      name="Propietario_Opp" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Cod_Moneda]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Cod_Moneda]"
+                      name="Cod_Moneda" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[MB_Previsto_Porc]"
+                      dataType="numeric"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[MB_Previsto_Porc]"
+                      name="MB_Previsto_Porc"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[MB_Previsto_Imp]"
+                      dataType="numeric"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[MB_Previsto_Imp]"
+                      name="MB_Previsto_Imp"
+                      precision="18" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Importe]"
+                      dataType="numeric"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Importe]"
+                      name="Importe"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Cantidad_Opp]"
+                      dataType="numeric"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Cantidad_Opp]"
+                      name="Cantidad_Opp"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Venta_Potencial]"
+                      dataType="r8"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Venta_Potencial]"
+                      name="Venta_Potencial" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Tipo_Opp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Tipo_Opp]"
+                      name="Tipo_Opp" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Etapa_Opp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Etapa_Opp]"
+                      name="Etapa_Opp" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Tipo_Reg_Opp]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Tipo_Reg_Opp]"
+                      name="Tipo_Reg_Opp" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Propuesta_Enviada]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Propuesta_Enviada]"
+                      name="Propuesta_Enviada" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Fecha_Envio_Propuesta]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Fecha_Envio_Propuesta]"
+                      name="Fecha_Envio_Propuesta" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Probabilidad]"
+                      dataType="numeric"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Probabilidad]"
+                      name="Probabilidad"
+                      precision="3" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Opp_Borrada]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Opp_Borrada]"
+                      name="Opp_Borrada" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Opp_Ganada]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Opp_Ganada]"
+                      name="Opp_Ganada" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Segmento_Local]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Segmento_Local]"
+                      name="Segmento_Local" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Razon_GP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4000"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Razon_GP]"
+                      name="Razon_GP" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Razon_GP_Comment]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4000"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Razon_GP_Comment]"
+                      name="Razon_GP_Comment" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Nombre_Cuenta]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Nombre_Cuenta]"
+                      name="Nombre_Cuenta" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Cod_Sucursal]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Cod_Sucursal]"
+                      name="Cod_Sucursal" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Sucursal]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[Sucursal]"
+                      name="Sucursal" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Cargar Stage (Opps).Paths[OLE DB Source Output]"
+              endId="Package\Cargar Stage (Opps)\Carga Stage.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Cargar Stage (Opps)\OPPs.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Archivo"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{64D23EED-22F7-41A6-87C0-A3E407E88772}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Archivo"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="exec ? = etl.load_ft_pl_opportunities ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vRtn"
+            SQLTask:ParameterDirection="ReturnValue"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::vIdBatch"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Mapping DW (Opps)"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{93AC04C1-629B-40EF-9720-F35903EC379B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Mapping DW (Opps)"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="exec etl.map_ft_pl_opportunities ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vIdBatch"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Mapping DW (Reports)"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6f176df7-f741-455a-8f73-aff9e65aa9c3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Mapping DW (Reports)"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="exec etl.map_ft_pl_opportunities_rpt ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vIdBatch"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::vFechaProceso"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Obtener Parametros"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A9A1A329-F4E5-4A59-9B0C-3F6F3964B5EF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Obtener Parametros"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:SqlStatementSource="select cast(etl.fn_getIdBatchActual( proceso  ) as int) as IdBatch,&#xA;&#x9;etl.fn_getFechaValida (&#x9;etl.fn_getParamProceso ( proceso, 'idDiaProceso'), 'yyyymmdd') as FechaProceso&#xA;from ( select ? as proceso ) p"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="IdBatch"
+            SQLTask:DtsVariableName="User::vIdBatch" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="FechaProceso"
+            SQLTask:DtsVariableName="User::vFechaProceso" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vProceso"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Stage"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{01fdc8e9-788d-418f-9b57-ac8009252d08}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Stage"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="truncate table stg.ST_FT_PL_OPPORTUNITIES" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{1DA0B74D-14B1-4E5A-B8B4-BFAA2DF7E0D4}"
+      DTS:From="Package\Obtener Parametros"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Load Archivo" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{97591C48-2348-4FE3-B3E2-12F24EFFF999}"
+      DTS:From="Package\Truncate Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Cargar Stage (Opps)" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{D5DC3F34-8B35-4A83-8DDB-596586B34497}"
+      DTS:From="Package\Load Archivo"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 2"
+      DTS:To="Package\Truncate Stage" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{07D8A2CB-59E1-4AEB-AA8D-B28B92B98AB6}"
+      DTS:From="Package\Cargar Stage (Opps)"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 3"
+      DTS:To="Package\Mapping DW (Opps)" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{D581D507-CFC0-4E7A-B55A-57AC8752F1C1}"
+      DTS:From="Package\Mapping DW (Opps)"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 4"
+      DTS:To="Package\Mapping DW (Reports)" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{E3815F4B-D5B3-4B83-B72A-0FCDD65C9113}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{B85EC58D-6244-41B1-95D5-E5ED1586D431}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Registrar Error DTS"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{9EE36AFE-DD08-456C-8953-72F267F4F43B}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Registrar Error DTS"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+              SQLTask:SqlStatementSource="etl.prc_log_error_DTS ?, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::vIdBatch"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Cargar Stage (Opps)"
+          TopLeft="294.257851071953,298.393082222479" />
+        <NodeLayout
+          Size="143,42"
+          Id="Package\Load Archivo"
+          TopLeft="92.424528301887,138.72641509434" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Mapping DW (Opps)"
+          TopLeft="446.047162062718,371.993080920714" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Obtener Parametros"
+          TopLeft="28.4245283018868,53.2169811320755" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Truncate Stage"
+          TopLeft="169.257856039007,220.593080796736" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="96.4245283018868,97.2169811320755">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="67.5000000000002,41.5094339622645"
+              Start="0,0"
+              End="67.5000000000002,34.0094339622645">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.7547169811322" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.7547169811322"
+                    Point2="0,20.7547169811322"
+                    Point3="4,20.7547169811322" />
+                  <mssgle:LineSegment
+                    End="63.5000000000002,20.7547169811322" />
+                  <mssgle:CubicBezierSegment
+                    Point1="63.5000000000002,20.7547169811322"
+                    Point2="67.5000000000002,20.7547169811322"
+                    Point3="67.5000000000002,24.7547169811322" />
+                  <mssgle:LineSegment
+                    End="67.5000000000002,34.0094339622645" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="244.057856039007,262.193080796736">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="137.399995032947,36.2000014257432"
+              Start="0,0"
+              End="137.399995032947,28.7000014257432">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.1000007128716" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.1000007128716"
+                    Point2="0,18.1000007128716"
+                    Point3="4,18.1000007128716" />
+                  <mssgle:LineSegment
+                    End="133.399995032947,18.1000007128716" />
+                  <mssgle:CubicBezierSegment
+                    Point1="133.399995032947,18.1000007128716"
+                    Point2="137.399995032947,18.1000007128716"
+                    Point3="137.399995032947,22.1000007128716" />
+                  <mssgle:LineSegment
+                    End="137.399995032947,28.7000014257432" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 2]"
+          TopLeft="164.024528301887,180.32641509434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="80.0333277371196,40.2666657023959"
+              Start="0,0"
+              End="80.0333277371196,32.7666657023959">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.1333328511979" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.1333328511979"
+                    Point2="0,20.1333328511979"
+                    Point3="4,20.1333328511979" />
+                  <mssgle:LineSegment
+                    End="76.0333277371196,20.1333328511979" />
+                  <mssgle:CubicBezierSegment
+                    Point1="76.0333277371196,20.1333328511979"
+                    Point2="80.0333277371196,20.1333328511979"
+                    Point3="80.0333277371196,24.1333328511979" />
+                  <mssgle:LineSegment
+                    End="80.0333277371196,32.7666657023959" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 3]"
+          TopLeft="381.257851071953,340.393082222479">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="113.789310990765,31.599998698235"
+              Start="0,0"
+              End="113.789310990765,24.099998698235">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.7502066964631" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.7502066964631"
+                    Point2="0,18.7502066964631"
+                    Point3="4,18.7502066964631" />
+                  <mssgle:LineSegment
+                    End="109.789310990765,18.7502066964631" />
+                  <mssgle:CubicBezierSegment
+                    Point1="109.789310990765,18.7502066964631"
+                    Point2="113.789310990765,18.7502066964631"
+                    Point3="113.789310990765,22.7502066964631" />
+                  <mssgle:LineSegment
+                    End="113.789310990765,24.099998698235" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Mapping DW (Reports)"
+          TopLeft="644,292" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 4]"
+          TopLeft="564.047162062718,371.993080920714">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="175.452837937282,-37.993080920714"
+              Start="0,0"
+              End="175.452837937282,-30.493080920714">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-11.3991889446083" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-11.3991889446083"
+                    Point2="0,-15.3991889446083"
+                    Point3="4,-15.3991889446083" />
+                  <mssgle:LineSegment
+                    End="171.452837937282,-15.3991889446083" />
+                  <mssgle:CubicBezierSegment
+                    Point1="171.452837937282,-15.3991889446083"
+                    Point2="175.452837937282,-15.3991889446083"
+                    Point3="175.452837937282,-19.3991889446083" />
+                  <mssgle:LineSegment
+                    End="175.452837937282,-30.493080920714" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Registrar Error DTS"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\Cargar Stage (Opps)">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="137,42"
+          Id="Package\Cargar Stage (Opps)\Carga Stage"
+          TopLeft="60.3333313133982,131.766666859521" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\Cargar Stage (Opps)\OPPs"
+          TopLeft="4.50000000000001,5.5" />
+        <EdgeLayout
+          Id="Package\Cargar Stage (Opps).Paths[OLE DB Source Output]"
+          TopLeft="65.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="63.3333313133982,84.266666859521"
+              Start="0,0"
+              End="63.3333313133982,76.766666859521">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.1333334297605" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38.1333334297605"
+                    Point2="0,42.1333334297605"
+                    Point3="4,42.1333334297605" />
+                  <mssgle:LineSegment
+                    End="59.3333313133982,42.1333334297605" />
+                  <mssgle:CubicBezierSegment
+                    Point1="59.3333313133982,42.1333334297605"
+                    Point2="63.3333313133982,42.1333334297605"
+                    Point3="63.3333313133982,46.1333334297605" />
+                  <mssgle:LineSegment
+                    End="63.3333313133982,76.766666859521" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar Stage (Opps)\Carga Stage">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar Stage (Opps)\OPPs">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

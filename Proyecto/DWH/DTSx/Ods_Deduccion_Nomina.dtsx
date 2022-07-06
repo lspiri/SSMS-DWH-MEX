@@ -1,0 +1,1114 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/18/2014 5:56:44 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ADECCOSQL5"
+  DTS:CreatorName="ADECCOSQL5\luciano.silvera"
+  DTS:DelayValidation="True"
+  DTS:DTSID="{D4BB9888-0735-4B67-AC1F-AF9AEFB7A7AD}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Ods_Deduccion_Nomina"
+  DTS:PackageType="5"
+  DTS:VersionBuild="85"
+  DTS:VersionGUID="{B5C32B1B-AC7F-467E-BC0A-A14475818082}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9ED0E033-7328-4D42-9516-DF8454C2535F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vIdBatch">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5408DC1E-DEA2-4924-96C1-644AAF129604}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vProceso">
+      <DTS:VariableValue
+        DTS:DataType="8">ODS_DEDUCCION_NOMINA</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1F64E3AF-4159-453B-8762-6EB1D47734A8}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vResultado">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{83BCC8F5-AC02-40D1-BAFA-F65B7D2813D6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vRtn">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Calculo Deducciones"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{e15ae2d7-74bc-494f-a9b6-db05a5a0bc4d}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Calculo Deducciones"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:SqlStatementSource="exec ? =  etl.map_ods_deduccion_nomina_calc ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vRtn"
+            SQLTask:ParameterDirection="ReturnValue"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::vIdBatch"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Carga ODS"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{24B73935-0011-4A63-AC97-390E6183BD90}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Carga ODS"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:SqlStatementSource="exec ? =  etl.map_ods_deduccion_nomina ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vRtn"
+            SQLTask:ParameterDirection="ReturnValue"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::vIdBatch"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Cargar Archivos"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A8277BDC-5E65-426D-B46E-3D251C237760}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cargar Archivos"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:SqlStatementSource="exec ? = etl.load_ods_deduccion_nomina ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vRtn"
+            SQLTask:ParameterDirection="ReturnValue"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::vIdBatch"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{D9CB6129-B2C4-4AA1-9C73-DC1F3FAD31CA}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{3C936710-95E8-45F8-9B41-644122349C35}"
+        DTS:ObjectName="{7CA244A1-4561-42DB-A206-34CA15DC8310}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::vResultado" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{5761FF05-F128-46E9-8DF1-59543011438E}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="vArchFinal">
+          <DTS:VariableValue
+            DTS:DataType="8">?</DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{74495EE6-40A3-422A-B784-2B0AB6E92D91}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="vArchOrigen">
+          <DTS:VariableValue
+            DTS:DataType="8">?</DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{7540B77B-5584-4578-958E-5F5EAD051C3E}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="vDirDestino">
+          <DTS:VariableValue
+            DTS:DataType="8">?</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Mover Archivo"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{F9C9B94C-4D92-4977-9CAC-0954AF706CDB}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mover Archivo"
+          DTS:TaskContact="File System Task;Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="MoveFile"
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="User::vArchFinal"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="User::vDirDestino"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Renombra Archivo"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{4F5528EB-1002-4C61-867D-F74B304799AE}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Renombra Archivo"
+          DTS:TaskContact="File System Task;Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="RenameFile"
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="User::vArchOrigen"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="User::vArchFinal"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{BB7080FC-FDDA-41B3-BA27-C414BC8AABE8}"
+          DTS:From="Package\Foreach Loop Container\Renombra Archivo"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach Loop Container\Mover Archivo" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{43ADEC9F-6245-4E0B-B5A7-739F89924977}"
+          DTS:ObjectName="{44B30A37-4218-4333-9B74-41A2E9F2F279}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::vDirDestino" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{D2725233-315A-4177-8B03-D49C13B6DECA}"
+          DTS:ObjectName="{6348CF3A-39B8-497F-99A5-E986D491F906}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::vArchFinal" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{1658C6B9-9B41-4969-B771-AA79CE3CA067}"
+          DTS:ObjectName="{F31068AC-3641-485D-8DC8-C3CE3BFCAF4F}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::vArchOrigen" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container 1"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{13cf294e-16f9-45a7-a1f2-7b043c7c1f10}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container 1">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{201791df-9d79-40fa-9cad-c90087b8177f}"
+        DTS:ObjectName="{7CA244A1-4561-42DB-A206-34CA15DC8310}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::vResultado" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{ff8a5dae-fe9a-4a85-b3c0-255878a8ac91}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="vArchFinal">
+          <DTS:VariableValue
+            DTS:DataType="8">?</DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{e80c6da2-4201-4424-95eb-f0e56b2f9836}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="vArchOrigen">
+          <DTS:VariableValue
+            DTS:DataType="8">?</DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{92318ec5-84e8-4e2b-9f62-6d52a8ba8121}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="vDirDestino">
+          <DTS:VariableValue
+            DTS:DataType="8">?</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container 1\Mover Archivo"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{e68a6dc2-bd43-4270-b1b8-236c6358522b}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mover Archivo"
+          DTS:TaskContact="File System Task;Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="MoveFile"
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="User::vArchFinal"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="User::vDirDestino"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container 1\Renombra Archivo"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{bd90d71e-0f54-4acd-a31b-97b6a6ca3f4c}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Renombra Archivo"
+          DTS:TaskContact="File System Task;Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="RenameFile"
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="User::vArchOrigen"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="User::vArchFinal"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container 1.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{60cdab46-1e0d-4356-92e0-2ec86a36a1f4}"
+          DTS:From="Package\Foreach Loop Container 1\Renombra Archivo"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach Loop Container 1\Mover Archivo" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{012b325f-e642-46a5-b3e0-3bf7c424c80d}"
+          DTS:ObjectName="{44B30A37-4218-4333-9B74-41A2E9F2F279}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::vDirDestino" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{511b4545-6057-4d14-9d88-126003bd3f04}"
+          DTS:ObjectName="{6348CF3A-39B8-497F-99A5-E986D491F906}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::vArchFinal" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{64049e75-338c-426f-bcb5-4fd5fba8e214}"
+          DTS:ObjectName="{F31068AC-3641-485D-8DC8-C3CE3BFCAF4F}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::vArchOrigen" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Parametros"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C0C6E722-2FB8-4D71-821E-05F783D98D3E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Parametros"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:SqlStatementSource="select cast(etl.fn_getIdBatchActual( ? ) as int) as IdBatch"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="idBatch"
+            SQLTask:DtsVariableName="User::vIdBatch" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vProceso"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Mover Archivos (Error o No Procesa"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7985d55c-6467-4eab-b58c-d858d2731e7e}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Mover Archivos (Error o No Procesa"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="select distinct archivo as ArchOrigen,&#xA;&#x9;replace(path, archivo,'') + &#xA;&#x9;case isnull(procesado,'N') when 'E' then 'Error\' else 'No_Procesado\' end as dirDestino,&#xA;&#x9;replace(archivo,'.xlsx','') +'-'+ &#xA;&#x9;convert(varchar, getdate(), 112) +'-'+ &#xA;&#x9;convert(varchar(2), getdate(), 108) + '.xlsx' as ArchDestino&#xA;from stg.ST_CONTROL_ARCHIVOS&#xA;where isnull(procesado,'N') in ('N','E')&#xA;&#x9;and proceso = ?"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::vResultado" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vProceso"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Mover Archivos Procesados"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{CCA59171-89B2-4166-B4A4-C57F0FDA539B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Mover Archivos Procesados"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="select distinct archivo as ArchOrigen,&#xA;  replace(path, archivo,'') + 'Procesado\' as dirDestino,&#xA;  replace(archivo,'.xlsx','') +'-'+ &#xA;  convert(varchar, getdate(), 112) +'-'+ &#xA;  convert(varchar(2), getdate(), 108) + '.xlsx' as ArchDestino&#xA;from stg.ST_CONTROL_ARCHIVOS&#xA;where isnull(procesado,'N') = 'N'&#xA;and proceso = ?"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::vResultado" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vProceso"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Registrar Error DTS"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4c268149-b01f-4b8a-8bca-27e176915427}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Registrar Error DTS"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:SqlStatementSource="raiserror('Carga de Archivos', 16, 1) WITH NOWAIT" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vIdBatch"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update Proceso Archivos"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7F5A403B-847A-40BC-B8AB-4D353C00F318}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update Proceso Archivos"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:SqlStatementSource="update stg.ST_CONTROL_ARCHIVOS&#xA;set procesado = 'S'&#xA;where isnull(procesado,'N') = 'N'&#xA; and proceso = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vProceso"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{36A41366-5A2D-434F-851D-C4A9530517BA}"
+      DTS:From="Package\Get Parametros"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Cargar Archivos" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{841706F6-96ED-4CEE-91BE-11E10DFAF26E}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::vRtn] == 1 ? true : false"
+      DTS:From="Package\Cargar Archivos"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Carga ODS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{13770855-CC42-4D40-9C8D-4C6690575133}"
+      DTS:From="Package\Mover Archivos Procesados"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Foreach Loop Container" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{516C70E3-6D61-47DF-A945-97B5965B6BBB}"
+      DTS:From="Package\Foreach Loop Container"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Update Proceso Archivos" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{F87FDCA0-1B9F-44EA-B0E5-D4E61D901FA2}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::vRtn] &gt; 0 ? true : false"
+      DTS:From="Package\Carga ODS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Calculo Deducciones" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{39CF7394-D29B-416E-B2F2-33B5E055E9AE}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::vRtn] == 1 ? true : false"
+      DTS:From="Package\Calculo Deducciones"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 2"
+      DTS:To="Package\Mover Archivos Procesados" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{43A598E3-0AC0-4B3F-9018-A182161BA466}"
+      DTS:EvalOp="1"
+      DTS:Expression="@[User::vRtn] != 1 ? true : false"
+      DTS:From="Package\Cargar Archivos"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 3"
+      DTS:To="Package\Mover Archivos (Error o No Procesa" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{3E21D4DE-A73D-4DA1-A641-5F3C1D9D2BB9}"
+      DTS:From="Package\Mover Archivos (Error o No Procesa"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 4"
+      DTS:To="Package\Foreach Loop Container 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{122304BF-A660-4259-9A99-82FAE77A1D57}"
+      DTS:EvalOp="1"
+      DTS:Expression="@[User::vRtn] == -1 ? true : false"
+      DTS:From="Package\Foreach Loop Container 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 5"
+      DTS:To="Package\Registrar Error DTS" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{4F69AE04-7199-4022-B864-74E560B18CDA}"
+      DTS:EventID="3211352"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{5602B06F-4714-4F5D-8B5B-BA8EA655974D}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Registrar Error DTS"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E86295F1-D5B1-45AB-999D-B58B04272938}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Registrar Error DTS"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+              SQLTask:SqlStatementSource="etl.prc_log_error_DTS ?, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::vIdBatch"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Calculo Deducciones"
+          TopLeft="615.5,173.27358490566" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Carga ODS"
+          TopLeft="437.389150934083,127.95183659912" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Cargar Archivos"
+          TopLeft="261.367924528302,92.764150943396" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Foreach Loop Container\Mover Archivo"
+          TopLeft="52.3396226415094,102.811320754717" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Foreach Loop Container\Renombra Archivo"
+          TopLeft="51.2075471698113,14.9245283018868" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          TopLeft="119.094339622641,58.8490566037736">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="1.1320754716981,43.9622641509434"
+              Start="0,0"
+              End="1.1320754716981,36.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.9622641509434" />
+                  <mssgle:LineSegment
+                    End="1.1320754716981,21.9622641509434" />
+                  <mssgle:LineSegment
+                    End="1.1320754716981,36.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="239,175"
+          Size="239,219"
+          Id="Package\Foreach Loop Container"
+          TopLeft="575.650943396226,331.27358490566" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Get Parametros"
+          TopLeft="226.5,11.877358490566" />
+        <NodeLayout
+          Size="136,51"
+          Id="Package\Mover Archivos Procesados"
+          TopLeft="632.198113207547,248.443396226415" />
+        <NodeLayout
+          Size="136,52"
+          Id="Package\Update Proceso Archivos"
+          TopLeft="845.5,426.27358490566" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="294.5,55.877358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="34.8679245283018,36.88679245283"
+              Start="0,0"
+              End="34.8679245283018,29.38679245283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.443396226415" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.443396226415"
+                    Point2="0,18.443396226415"
+                    Point3="4,18.443396226415" />
+                  <mssgle:LineSegment
+                    End="30.8679245283018,18.443396226415" />
+                  <mssgle:CubicBezierSegment
+                    Point1="30.8679245283018,18.443396226415"
+                    Point2="34.8679245283018,18.443396226415"
+                    Point3="34.8679245283018,22.443396226415" />
+                  <mssgle:LineSegment
+                    End="34.8679245283018,29.38679245283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="397.367924528302,114.764150943396">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="40.0212264057812,35.187685655724"
+              Start="0,0"
+              End="32.5212264057812,35.187685655724">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="16.0106132028906,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.0106132028906,0"
+                    Point2="20.0106132028906,0"
+                    Point3="20.0106132028906,4" />
+                  <mssgle:LineSegment
+                    End="20.0106132028906,31.187685655724" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20.0106132028906,31.187685655724"
+                    Point2="20.0106132028906,35.187685655724"
+                    Point3="24.0106132028906,35.187685655724" />
+                  <mssgle:LineSegment
+                    End="32.5212264057812,35.187685655724" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="12.0106132028906,-22,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="697.674528301887,299.443396226415">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.8301886792451"
+              Start="0,0"
+              End="0,24.3301886792451">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.3301886792451" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="814.650943396226,440.77358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="30.849056603774,11.4999999999999"
+              Start="0,0"
+              End="23.349056603774,11.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="11.424528301887,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11.424528301887,0"
+                    Point2="15.424528301887,0"
+                    Point3="15.424528301887,4" />
+                  <mssgle:LineSegment
+                    End="15.424528301887,7.49999999999989" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15.424528301887,7.49999999999989"
+                    Point2="15.424528301887,11.4999999999999"
+                    Point3="19.424528301887,11.4999999999999" />
+                  <mssgle:LineSegment
+                    End="23.349056603774,11.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="573.389150934083,149.95183659912">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="42.110849065917,44.32174830654"
+              Start="0,0"
+              End="34.610849065917,44.32174830654">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="17.0554245329585,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="17.0554245329585,0"
+                    Point2="21.0554245329585,0"
+                    Point3="21.0554245329585,4" />
+                  <mssgle:LineSegment
+                    End="21.0554245329585,40.32174830654" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.0554245329585,40.32174830654"
+                    Point2="21.0554245329585,44.32174830654"
+                    Point3="25.0554245329585,44.32174830654" />
+                  <mssgle:LineSegment
+                    End="34.610849065917,44.32174830654" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="13.0554245329585,-22,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 2]"
+          TopLeft="697.599056603774,215.27358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33.1698113207551"
+              Start="0,0"
+              End="0,25.6698113207551">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.6698113207551" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,4.83490566037753,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="184,68"
+          Id="Package\Mover Archivos (Error o No Procesa"
+          TopLeft="227.047169811321,189.877358490566" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Foreach Loop Container 1\Mover Archivo"
+          TopLeft="52.3396226415094,102.811320754717" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Foreach Loop Container 1\Renombra Archivo"
+          TopLeft="51.2075471698113,14.9245283018868" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container 1.PrecedenceConstraints[Constraint]"
+          TopLeft="119.094339622641,58.8490566037736">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="1.1320754716981,43.9622641509434"
+              Start="0,0"
+              End="1.1320754716981,36.4622641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.9622641509434" />
+                  <mssgle:LineSegment
+                    End="1.1320754716981,21.9622641509434" />
+                  <mssgle:LineSegment
+                    End="1.1320754716981,36.4622641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="239,175"
+          Size="239,219"
+          Id="Package\Foreach Loop Container 1"
+          TopLeft="260.5,286.707547169811" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 3]"
+          TopLeft="329.367924528302,136.764150943396">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-10.3207547169807,53.11320754717"
+              Start="0,0"
+              End="-10.3207547169807,45.61320754717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.556603773585" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.556603773585"
+                    Point2="0,26.556603773585"
+                    Point3="-4,26.556603773585" />
+                  <mssgle:LineSegment
+                    End="-6.32075471698073,26.556603773585" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-6.32075471698073,26.556603773585"
+                    Point2="-10.3207547169807,26.556603773585"
+                    Point3="-10.3207547169807,30.556603773585" />
+                  <mssgle:LineSegment
+                    End="-10.3207547169807,45.61320754717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-13.1603773584904,31.556603773585,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 4]"
+          TopLeft="319.047169811321,257.877358490566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="60.9528301886789,28.830188679245"
+              Start="0,0"
+              End="60.9528301886789,21.330188679245">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.4150943396225" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.4150943396225"
+                    Point2="0,14.4150943396225"
+                    Point3="4,14.4150943396225" />
+                  <mssgle:LineSegment
+                    End="56.9528301886789,14.4150943396225" />
+                  <mssgle:CubicBezierSegment
+                    Point1="56.9528301886789,14.4150943396225"
+                    Point2="60.9528301886789,14.4150943396225"
+                    Point3="60.9528301886789,18.4150943396225" />
+                  <mssgle:LineSegment
+                    End="60.9528301886789,21.330188679245" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Registrar Error DTS"
+          TopLeft="294.5,574.27358490566" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 5]"
+          TopLeft="380,505.707547169811">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-17.5,68.5660377358491"
+              Start="0,0"
+              End="-17.5,61.0660377358491">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2830188679245" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.2830188679245"
+                    Point2="0,34.2830188679245"
+                    Point3="-4,34.2830188679245" />
+                  <mssgle:LineSegment
+                    End="-13.5,34.2830188679245" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-13.5,34.2830188679245"
+                    Point2="-17.5,34.2830188679245"
+                    Point3="-17.5,38.2830188679245" />
+                  <mssgle:LineSegment
+                    End="-17.5,61.0660377358491" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-16.75,39.2830188679245,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Registrar Error DTS"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
