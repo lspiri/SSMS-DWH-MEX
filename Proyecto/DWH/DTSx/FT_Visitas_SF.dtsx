@@ -1,0 +1,1411 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/18/2014 5:56:44 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ADECCOSQL5"
+  DTS:CreatorName="ADECCOSQL5\luciano.silvera"
+  DTS:DelayValidation="True"
+  DTS:DTSID="{81A5CB13-2C13-4FDF-8C7D-762D20AABB18}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="FT_Visitas_SF"
+  DTS:PackageType="5"
+  DTS:VersionBuild="165"
+  DTS:VersionGUID="{47B371B7-D886-495A-A676-C0CBF032B6FA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{53865A92-EB5C-449D-BEBA-EC078DF5FBF8}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vENV">
+      <DTS:VariableValue
+        DTS:DataType="8">PROD</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CFB0C9A4-3C4B-4431-B018-4A83BAAA7CF6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vIdBatch">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AB45C132-A9AA-4B13-AFD9-FAAF5B88AC76}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vProceso">
+      <DTS:VariableValue
+        DTS:DataType="8">FT_VISITAS_SF</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{30D8FADE-B19E-4E6F-BB91-96A4A9392102}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vResultado">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{ED0044B8-CF0F-4796-94E1-4C5DAFF1713F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vRtn">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Carga Stage"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{63C4F24D-48DD-42AC-A6DA-29396006B741}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Carga Stage"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          engineThreads="5"
+          version="1">
+          <components>
+            <component
+              refId="Package\Carga Stage\Carga Stage Visitas"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Carga Stage Visitas"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stg].[ST_FT_VISITAS_SF]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga Stage\Carga Stage Visitas.Connections[OleDbConnection]"
+                  connectionManagerID="{C978FAC7-8888-40C7-8E55-7F76F377E886}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].Columns[ID_ACTIVIDAD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="ID_ACTIVIDAD"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[ID_ACTIVIDAD]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[ID_ACTIVIDAD]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].Columns[SUCURSAL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="SUCURSAL"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[SUCURSAL]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[SUCURSAL]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].Columns[FECHA]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FECHA"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[FECHA]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[FECHA]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].Columns[TIPO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="TIPO"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[TIPO]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[TIPO]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].Columns[SUBTIPO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="SUBTIPO"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[SUBTIPO]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[SUBTIPO]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].Columns[MAIL_USUARIO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="MAIL_USUARIO"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[MAIL_USUARIO]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[MAIL_USUARIO]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].Columns[NOMBRE_USUARIO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NOMBRE_USUARIO"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_USUARIO]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[NOMBRE_USUARIO]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].Columns[CUIT_CUENTA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="CUIT_CUENTA"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[CUIT_CUENTA]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[CUIT_CUENTA]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].Columns[NOMBRE_CUENTA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NOMBRE_CUENTA"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CUENTA]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[NOMBRE_CUENTA]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].Columns[SERVICIO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="SERVICIO"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[SERVICIO]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[SERVICIO]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].Columns[ASUNTO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="ASUNTO"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[ASUNTO]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[ASUNTO]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].Columns[FECHA_CREACION]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FECHA_CREACION"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_CREACION]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[FECHA_CREACION]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].Columns[FECHA_MODIF]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FECHA_MODIF"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_MODIF]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[FECHA_MODIF]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].Columns[CREADOR_POR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="CREADOR_POR"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[CREADOR_POR]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[CREADOR_POR]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].Columns[TECH_GUID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TECH_GUID"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[TECH_GUID]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[TECH_GUID]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].Columns[MAIL_CREADOR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="MAIL_CREADOR"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[MAIL_CREADOR]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[MAIL_CREADOR]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].Columns[FECHA_FIN]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FECHA_FIN"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_FIN]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[FECHA_FIN]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].Columns[COD_SUCURSAL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="COD_SUCURSAL"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[COD_SUCURSAL]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[COD_SUCURSAL]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].Columns[GUID_CUENTA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="GUID_CUENTA"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[GUID_CUENTA]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[GUID_CUENTA]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[ID_STAGE]"
+                      dataType="numeric"
+                      name="ID_STAGE"
+                      precision="15" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_CARGA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="FECHA_CARGA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[ID_ACTIVIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ID_ACTIVIDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[SUCURSAL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      name="SUCURSAL" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[FECHA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="FECHA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[TIPO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="TIPO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[SUBTIPO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="SUBTIPO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[MAIL_USUARIO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="MAIL_USUARIO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_USUARIO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NOMBRE_USUARIO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[CUIT_CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="CUIT_CUENTA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NOMBRE_CUENTA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[SERVICIO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="SERVICIO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[ASUNTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="ASUNTO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[RESULTADO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="RESULTADO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[OBJETIVO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="OBJETIVO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[TEMA_PRINCIPAL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4000"
+                      name="TEMA_PRINCIPAL" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[COMENTARIOS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4000"
+                      name="COMENTARIOS" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_CREACION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="FECHA_CREACION" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_MODIF]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="FECHA_MODIF" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[HORA_VENC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="HORA_VENC" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[CREADOR_POR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CREADOR_POR" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[MAIL_CREADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="MAIL_CREADOR" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[ARCHIVO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="ARCHIVO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[TECH_GUID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TECH_GUID" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_FIN]"
+                      dataType="dbTimeStamp"
+                      name="FECHA_FIN" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[COD_SUCURSAL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="COD_SUCURSAL" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input].ExternalColumns[GUID_CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="GUID_CUENTA" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga Stage\Carga Stage Visitas.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga Stage\Carga Stage Visitas.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Carga Stage Visitas.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga Stage\Carga Stage Visitas.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga Stage\Visita de Info"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Visita de Info"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select TECH_GUID, 
+	ID_ACTIVIDAD, 
+	SUCURSAL,
+	FECHA, 
+	TIPO, 
+	SUBTIPO, 
+	MAIL_USUARIO, 
+	NOMBRE_USUARIO,
+	CUIT_CUENTA, 
+	NOMBRE_CUENTA, 
+	SERVICIO, 
+	ASUNTO, 
+	FECHA_CREACION, 
+	FECHA_MODIF,
+	CREADOR_POR,
+	MAIL_CREADOR,
+	FECHA_FIN,
+	COD_SUCURSAL,
+	GUID_CUENTA
+from dbo.vw_mx_ft_visitas_sf</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga Stage\Visita de Info.Connections[OleDbConnection]"
+                  connectionManagerID="{8C8B2F7F-FCDF-4D91-9B18-ABF903AFFACE}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SrcSF]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[TECH_GUID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[TECH_GUID]"
+                      length="50"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[TECH_GUID]"
+                      name="TECH_GUID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[ID_ACTIVIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[ID_ACTIVIDAD]"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[ID_ACTIVIDAD]"
+                      name="ID_ACTIVIDAD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[SUCURSAL]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[SUCURSAL]"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[SUCURSAL]"
+                      name="SUCURSAL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[FECHA]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[FECHA]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[FECHA]"
+                      name="FECHA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[TIPO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[TIPO]"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[TIPO]"
+                      name="TIPO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[SUBTIPO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[SUBTIPO]"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[SUBTIPO]"
+                      name="SUBTIPO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[MAIL_USUARIO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[MAIL_USUARIO]"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[MAIL_USUARIO]"
+                      name="MAIL_USUARIO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[NOMBRE_USUARIO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_USUARIO]"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[NOMBRE_USUARIO]"
+                      name="NOMBRE_USUARIO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[CUIT_CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[CUIT_CUENTA]"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[CUIT_CUENTA]"
+                      name="CUIT_CUENTA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[NOMBRE_CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_CUENTA]"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[NOMBRE_CUENTA]"
+                      name="NOMBRE_CUENTA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[SERVICIO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[SERVICIO]"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[SERVICIO]"
+                      name="SERVICIO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[ASUNTO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[ASUNTO]"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[ASUNTO]"
+                      name="ASUNTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[FECHA_CREACION]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[FECHA_CREACION]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[FECHA_CREACION]"
+                      name="FECHA_CREACION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[FECHA_MODIF]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[FECHA_MODIF]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[FECHA_MODIF]"
+                      name="FECHA_MODIF"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[CREADOR_POR]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[CREADOR_POR]"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[CREADOR_POR]"
+                      name="CREADOR_POR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[MAIL_CREADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[MAIL_CREADOR]"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[MAIL_CREADOR]"
+                      name="MAIL_CREADOR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[FECHA_FIN]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[FECHA_FIN]"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[FECHA_FIN]"
+                      name="FECHA_FIN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[COD_SUCURSAL]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[COD_SUCURSAL]"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[COD_SUCURSAL]"
+                      name="COD_SUCURSAL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[GUID_CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[GUID_CUENTA]"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].Columns[GUID_CUENTA]"
+                      name="GUID_CUENTA"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[TECH_GUID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TECH_GUID" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[ID_ACTIVIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="ID_ACTIVIDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[SUCURSAL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="SUCURSAL" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[FECHA]"
+                      dataType="dbTimeStamp"
+                      name="FECHA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[TIPO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TIPO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[SUBTIPO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="SUBTIPO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[MAIL_USUARIO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="MAIL_USUARIO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_USUARIO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NOMBRE_USUARIO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[CUIT_CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CUIT_CUENTA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NOMBRE_CUENTA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[SERVICIO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="SERVICIO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[ASUNTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="ASUNTO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[FECHA_CREACION]"
+                      dataType="dbTimeStamp"
+                      name="FECHA_CREACION" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[FECHA_MODIF]"
+                      dataType="dbTimeStamp"
+                      name="FECHA_MODIF" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[CREADOR_POR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CREADOR_POR" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[MAIL_CREADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="MAIL_CREADOR" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[FECHA_FIN]"
+                      dataType="dbTimeStamp"
+                      name="FECHA_FIN" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[COD_SUCURSAL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="COD_SUCURSAL" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output].ExternalColumns[GUID_CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="GUID_CUENTA" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[TECH_GUID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[TECH_GUID]"
+                      name="TECH_GUID" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[ID_ACTIVIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[ID_ACTIVIDAD]"
+                      name="ID_ACTIVIDAD" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[SUCURSAL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[SUCURSAL]"
+                      name="SUCURSAL" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[FECHA]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[FECHA]"
+                      name="FECHA" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[TIPO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[TIPO]"
+                      name="TIPO" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[SUBTIPO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[SUBTIPO]"
+                      name="SUBTIPO" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[MAIL_USUARIO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[MAIL_USUARIO]"
+                      name="MAIL_USUARIO" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[NOMBRE_USUARIO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[NOMBRE_USUARIO]"
+                      name="NOMBRE_USUARIO" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[CUIT_CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[CUIT_CUENTA]"
+                      name="CUIT_CUENTA" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[NOMBRE_CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[NOMBRE_CUENTA]"
+                      name="NOMBRE_CUENTA" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[SERVICIO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[SERVICIO]"
+                      name="SERVICIO" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[ASUNTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[ASUNTO]"
+                      name="ASUNTO" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[FECHA_CREACION]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[FECHA_CREACION]"
+                      name="FECHA_CREACION" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[FECHA_MODIF]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[FECHA_MODIF]"
+                      name="FECHA_MODIF" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[CREADOR_POR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[CREADOR_POR]"
+                      name="CREADOR_POR" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[MAIL_CREADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[MAIL_CREADOR]"
+                      name="MAIL_CREADOR" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[FECHA_FIN]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[FECHA_FIN]"
+                      name="FECHA_FIN" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[COD_SUCURSAL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[COD_SUCURSAL]"
+                      name="COD_SUCURSAL" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[GUID_CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[GUID_CUENTA]"
+                      name="GUID_CUENTA" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Carga Stage.Paths[OLE DB Source Output]"
+              endId="Package\Carga Stage\Carga Stage Visitas.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Carga Stage\Visita de Info.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Parametros"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B36F1D9F-27EC-44C7-B030-F6611CE28308}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Parametros"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:SqlStatementSource="select cast(etl.fn_getIdBatchActual( proceso ) as int) as IdBatch&#xA;from (select ? as proceso) x"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="idBatch"
+            SQLTask:DtsVariableName="User::vIdBatch" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vProceso"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Mapping DW"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{8A5F4420-C836-481E-BB3A-2CD236A0F1D1}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Mapping DW"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:SqlStatementSource="exec etl.map_ft_visitas_sf ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vIdBatch"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncar Stage"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0C5E3286-DDE9-4149-9D02-72830AB18A6B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncar Stage"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:SqlStatementSource="truncate table stg.ST_FT_VISITAS_SF" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vRtn"
+            SQLTask:ParameterDirection="ReturnValue"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::vIdBatch"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{1557D88A-3467-4D13-83D8-F3B0E6EA540E}"
+      DTS:From="Package\Get Parametros"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Truncar Stage" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{356AA77D-B4AA-4AF1-A54F-08C22E25ED6D}"
+      DTS:From="Package\Truncar Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Carga Stage" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{ADCAEFA9-9533-4F19-AE83-5BFC8BB49A65}"
+      DTS:From="Package\Carga Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Mapping DW" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{84F8A5D9-9AB5-4502-9172-07EE35C60728}"
+      DTS:EventID="3211352"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{E06503CC-CEB3-48D2-8577-42C6E08D4904}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Registrar Error DTS"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{C91F7842-6F2D-440B-A716-58B21859CE8E}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Registrar Error DTS"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+              SQLTask:SqlStatementSource="etl.prc_log_error_DTS ?, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::vIdBatch"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Carga Stage"
+          TopLeft="147.5,247.462264150943" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Get Parametros"
+          TopLeft="24.4811320754717,73.9150943396226" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Mapping DW"
+          TopLeft="191.650943396226,330.669811320755" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Truncar Stage"
+          TopLeft="77.6132075471699,161.462264150943" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="92.367924528302,117.839622641509">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="53.1320754716981,43.622641509434"
+              Start="0,0"
+              End="53.1320754716981,36.122641509434">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.811320754717" />
+                  <mssgle:LineSegment
+                    End="53.1320754716981,21.811320754717" />
+                  <mssgle:LineSegment
+                    End="53.1320754716981,36.122641509434" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="145.5,205.38679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="69.8867924528302,42.0754716981132"
+              Start="0,0"
+              End="69.8867924528302,34.5754716981132">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.0188679245283" />
+                  <mssgle:LineSegment
+                    End="69.8867924528302,21.0188679245283" />
+                  <mssgle:LineSegment
+                    End="69.8867924528302,34.5754716981132" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="215.38679245283,291.38679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="44.1509433962264,39.2830188679245"
+              Start="0,0"
+              End="44.1509433962264,31.7830188679245">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.622641509434" />
+                  <mssgle:LineSegment
+                    End="44.1509433962264,19.622641509434" />
+                  <mssgle:LineSegment
+                    End="44.1509433962264,31.7830188679245" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Registrar Error DTS"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\Carga Stage">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="142,42"
+          Id="Package\Carga Stage\Visita de Info"
+          TopLeft="15.5,5.5" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Carga Stage\Carga Stage Visitas"
+          TopLeft="37.5,108.5" />
+        <EdgeLayout
+          Id="Package\Carga Stage.Paths[OLE DB Source Output]"
+          TopLeft="86.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="39,61"
+              Start="0,0"
+              End="39,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.5"
+                    Point2="0,30.5"
+                    Point3="4,30.5" />
+                  <mssgle:LineSegment
+                    End="35,30.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="35,30.5"
+                    Point2="39,30.5"
+                    Point3="39,34.5" />
+                  <mssgle:LineSegment
+                    End="39,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga Stage\Carga Stage Visitas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga Stage\Visita de Info">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

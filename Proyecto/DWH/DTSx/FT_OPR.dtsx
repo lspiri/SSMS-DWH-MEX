@@ -1,0 +1,1157 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/18/2014 5:56:44 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ADECCOSQL5"
+  DTS:CreatorName="ADECCOSQL5\luciano.silvera"
+  DTS:DelayValidation="True"
+  DTS:DTSID="{5FDE464F-73CF-49D5-A5D1-3EA6C80E97E2}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="FT_OPR"
+  DTS:PackageType="5"
+  DTS:VersionBuild="191"
+  DTS:VersionGUID="{70C841D2-6A00-425F-BF87-0B02DF9D47EB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E2B3D9F3-8EE9-467D-9463-11D2D3C0C81A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vIdBatch">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AFFA1D3A-9FF2-4C40-A43C-8A6465BE17BB}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vIdMes">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B6A02211-BBE7-49BA-A3B5-3A95F9625196}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vProceso">
+      <DTS:VariableValue
+        DTS:DataType="8">FT_OPR</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BA3640E7-6A8B-40D4-A417-BB77EC9CCCBB}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;select PERIODO, COD_EMPRESA, COD_SUCURSAL, COD_CLIENTE, &#xA;&#x9;COD_SERVICIO, COD_CUENTA, POSTING, sum(isnull(importe,0)) as IMPORTE&#xA;from (&#xA;&#x9;SELECT cast(convert(char(6),convert(smalldatetime,accountingdate),112) as varchar(10)) as periodo, &#xA;&#x9;&#x9;cast(v.ledgername as varchar(30)) as cod_empresa, &#xA;&#x9;&#x9;cast(right(v.localcostcenter,6) as varchar(30)) as cod_sucursal, &#xA;&#x9;&#x9;cast(case when v.clientorganizationunit = '' then '00000' else v.clientorganizationunit end as varchar(30)) as cod_cliente,&#xA;&#x9;&#x9;cast(v.LocalSubserviceLine as varchar(30)) as cod_servicio,&#xA;&#x9;&#x9;cast(v.MainAccount as varchar(30)) as cod_cuenta,&#xA;&#x9;&#x9;cast(v.postinglayer as varchar(30)) as posting,&#xA;&#x9;&#x9;convert(decimal(18,2),v.accountingcurrencyamount) as importe&#xA;&#x9;FROM dbo.D365_VOUCHER_TRANSACTIONS as v WITH(NOLOCK)&#xA;&#x9;WHERE 1=1 &#xA;&#x9;&#x9;and v.ledgername in('1181','1188','1185','1184','2012','2013','2015','2016','2018') &#xA;&#x9;&#x9;and v.postingtype &lt;&gt; 'TransferOpeningClosing' &#xA;&#x9;&#x9;and left(v.mainaccount,2) &gt;= '60' ) vw&#xA;where periodo = '&quot;+  (DT_WSTR, 6) @[User::vIdMes] +&quot;' &#xA;group  by periodo, cod_empresa, cod_sucursal, cod_cliente, &#xA;&#x9;cod_servicio, cod_cuenta, posting&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vQuery">
+      <DTS:VariableValue
+        DTS:DataType="8">select PERIODO, COD_EMPRESA, COD_SUCURSAL, COD_CLIENTE, 
+	COD_SERVICIO, COD_CUENTA, POSTING, sum(isnull(importe,0)) as IMPORTE
+from (
+	SELECT cast(convert(char(6),convert(smalldatetime,accountingdate),112) as varchar(10)) as periodo, 
+		cast(v.ledgername as varchar(30)) as cod_empresa, 
+		cast(right(v.localcostcenter,6) as varchar(30)) as cod_sucursal, 
+		cast(case when v.clientorganizationunit = '' then '00000' else v.clientorganizationunit end as varchar(30)) as cod_cliente,
+		cast(v.LocalSubserviceLine as varchar(30)) as cod_servicio,
+		cast(v.MainAccount as varchar(30)) as cod_cuenta,
+		cast(v.postinglayer as varchar(30)) as posting,
+		convert(decimal(18,2),v.accountingcurrencyamount) as importe
+	FROM dbo.D365_VOUCHER_TRANSACTIONS as v WITH(NOLOCK)
+	WHERE 1=1 
+		and v.ledgername in('1181','1188','1185','1184','2012','2013','2015','2016','2018') 
+		and v.postingtype &lt;&gt; 'TransferOpeningClosing' 
+		and left(v.mainaccount,2) &gt;= '60' ) vw
+where periodo = '0' 
+group  by periodo, cod_empresa, cod_sucursal, cod_cliente, 
+	cod_servicio, cod_cuenta, posting</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{19F205CA-C4D6-4EA5-A495-E1B71673FD57}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;select PERIODO, COD_EMPRESA, COD_SUCURSAL, COD_CLIENTE, &#xA;&#x9;COD_SERVICIO, COD_CUENTA, POSTING, sum(isnull(importe,0)) as IMPORTE&#xA;from (&#xA;&#x9;SELECT cast(convert(char(6),convert(smalldatetime,accountingdate),112) as varchar(10)) as periodo, &#xA;&#x9;&#x9;cast(v.ledgername as varchar(30)) as cod_empresa, &#xA;&#x9;&#x9;cast(right(v.localcostcenter,6) as varchar(30)) as cod_sucursal, &#xA;&#x9;&#x9;cast(case when v.clientorganizationunit = '' then '00000' else v.clientorganizationunit end as varchar(30)) as cod_cliente,&#xA;&#x9;&#x9;cast(v.LocalSubserviceLine as varchar(30)) as cod_servicio,&#xA;&#x9;&#x9;cast(v.MainAccount as varchar(30)) as cod_cuenta,&#xA;&#x9;&#x9;cast(v.postinglayer as varchar(30)) as posting,&#xA;&#x9;&#x9;convert(decimal(18,2),v.accountingcurrencyamount) as importe&#xA;&#x9;FROM dbo.D365_VOUCHER_TRANSACTIONS as v WITH(NOLOCK)&#xA;&#x9;WHERE 1=1 &#xA;&#x9;&#x9;and v.ledgername in('1181','1188','1185','1184','2012','2013','2015','2016','2018') &#xA;&#x9;&#x9;and v.postingtype &lt;&gt; 'TransferOpeningClosing' &#xA;&#x9;&#x9;and left(v.mainaccount,2) &gt;= '60' ) vw&#xA;where periodo = '&quot;+  (DT_WSTR, 6) @[User::vIdMes] +&quot;' &#xA;group  by periodo, cod_empresa, cod_sucursal, cod_cliente, &#xA;&#x9;cod_servicio, cod_cuenta, posting&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vQueryManual">
+      <DTS:VariableValue
+        DTS:DataType="8">select PERIODO, COD_EMPRESA, COD_SUCURSAL, COD_CLIENTE, 
+	COD_SERVICIO, COD_CUENTA, POSTING, sum(isnull(importe,0)) as IMPORTE
+from (
+	SELECT cast(convert(char(6),convert(smalldatetime,accountingdate),112) as varchar(10)) as periodo, 
+		cast(v.ledgername as varchar(30)) as cod_empresa, 
+		cast(right(v.localcostcenter,6) as varchar(30)) as cod_sucursal, 
+		cast(case when v.clientorganizationunit = '' then '00000' else v.clientorganizationunit end as varchar(30)) as cod_cliente,
+		cast(v.LocalSubserviceLine as varchar(30)) as cod_servicio,
+		cast(v.MainAccount as varchar(30)) as cod_cuenta,
+		cast(v.postinglayer as varchar(30)) as posting,
+		convert(decimal(18,2),v.accountingcurrencyamount) as importe
+	FROM dbo.D365_VOUCHER_TRANSACTIONS as v WITH(NOLOCK)
+	WHERE 1=1 
+		and v.ledgername in('1181','1188','1185','1184','2012','2013','2015','2016','2018') 
+		and v.postingtype &lt;&gt; 'TransferOpeningClosing' 
+		and left(v.mainaccount,2) &gt;= '60' ) vw
+where periodo = '0' 
+group  by periodo, cod_empresa, cod_sucursal, cod_cliente, 
+	cod_servicio, cod_cuenta, posting</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Carga Stage"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{eb9e5774-0ed0-4f2a-ae70-16377a2b2d63}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Carga Stage"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          engineThreads="5"
+          version="1">
+          <components>
+            <component
+              refId="Package\Carga Stage\Carga Stage"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Carga Stage"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stg].[ST_FT_OPR_DETALLE_CUENTA]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga Stage\Carga Stage.Connections[OleDbConnection]"
+                  connectionManagerID="{C978FAC7-8888-40C7-8E55-7F76F377E886}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].Columns[COD_SUCURSAL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="COD_SUCURSAL"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[COD_SUCURSAL]"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[COD_SUCURSAL]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].Columns[PERIODO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="PERIODO"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[PERIODO]"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[PERIODO]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].Columns[COD_EMPRESA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="COD_EMPRESA"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[COD_EMPRESA]"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[COD_EMPRESA]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].Columns[COD_CLIENTE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="COD_CLIENTE"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[COD_CLIENTE]"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[COD_CLIENTE]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].Columns[COD_SERVICIO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="COD_SERVICIO"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[COD_SERVICIO]"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[COD_SERVICIO]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].Columns[COD_CUENTA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="COD_CUENTA"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[COD_CUENTA]"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[COD_CUENTA]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].Columns[IMPORTE]"
+                      cachedDataType="numeric"
+                      cachedName="IMPORTE"
+                      cachedPrecision="38"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[IMPORTE]"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[IMPORTE]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].Columns[POSTING]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="POSTING"
+                      externalMetadataColumnId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[POSTING]"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[POSTING]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_CARGA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="FECHA_CARGA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[PERIODO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="PERIODO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[COD_EMPRESA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="COD_EMPRESA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[COD_SUCURSAL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="COD_SUCURSAL" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[COD_CLIENTE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="COD_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[COD_SERVICIO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="COD_SERVICIO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[COD_CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="COD_CUENTA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[IMPORTE]"
+                      dataType="numeric"
+                      name="IMPORTE"
+                      precision="22"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input].ExternalColumns[POSTING]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="POSTING" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga Stage\Carga Stage.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga Stage\Carga Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga Stage\Carga Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga Stage\Carga Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga Stage\Carga Stage.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga Stage\OPR"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OPR"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable">User::vQuery</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga Stage\OPR.Connections[OleDbConnection]"
+                  connectionManagerID="{231C58F6-37E2-4639-873F-D83B4DFE70BF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SrcD365]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[PERIODO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].ExternalColumns[PERIODO]"
+                      length="10"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[PERIODO]"
+                      name="PERIODO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[COD_EMPRESA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].ExternalColumns[COD_EMPRESA]"
+                      length="30"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[COD_EMPRESA]"
+                      name="COD_EMPRESA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[COD_SUCURSAL]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].ExternalColumns[COD_SUCURSAL]"
+                      length="30"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[COD_SUCURSAL]"
+                      name="COD_SUCURSAL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[COD_CLIENTE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].ExternalColumns[COD_CLIENTE]"
+                      length="30"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[COD_CLIENTE]"
+                      name="COD_CLIENTE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[COD_SERVICIO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].ExternalColumns[COD_SERVICIO]"
+                      length="30"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[COD_SERVICIO]"
+                      name="COD_SERVICIO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[COD_CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].ExternalColumns[COD_CUENTA]"
+                      length="30"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[COD_CUENTA]"
+                      name="COD_CUENTA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[IMPORTE]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].ExternalColumns[IMPORTE]"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[IMPORTE]"
+                      name="IMPORTE"
+                      precision="38"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[POSTING]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].ExternalColumns[POSTING]"
+                      length="30"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].Columns[POSTING]"
+                      name="POSTING"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].ExternalColumns[PERIODO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="PERIODO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].ExternalColumns[COD_EMPRESA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="COD_EMPRESA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].ExternalColumns[COD_SUCURSAL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="COD_SUCURSAL" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].ExternalColumns[COD_CLIENTE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="COD_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].ExternalColumns[COD_SERVICIO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="COD_SERVICIO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].ExternalColumns[COD_CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="COD_CUENTA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].ExternalColumns[IMPORTE]"
+                      dataType="numeric"
+                      name="IMPORTE"
+                      precision="38"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output].ExternalColumns[POSTING]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="POSTING" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output].Columns[PERIODO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output].Columns[PERIODO]"
+                      name="PERIODO" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output].Columns[COD_EMPRESA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output].Columns[COD_EMPRESA]"
+                      name="COD_EMPRESA" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output].Columns[COD_SUCURSAL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output].Columns[COD_SUCURSAL]"
+                      name="COD_SUCURSAL" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output].Columns[COD_CLIENTE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output].Columns[COD_CLIENTE]"
+                      name="COD_CLIENTE" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output].Columns[COD_SERVICIO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output].Columns[COD_SERVICIO]"
+                      name="COD_SERVICIO" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output].Columns[COD_CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output].Columns[COD_CUENTA]"
+                      name="COD_CUENTA" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output].Columns[IMPORTE]"
+                      dataType="numeric"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output].Columns[IMPORTE]"
+                      name="IMPORTE"
+                      precision="38"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output].Columns[POSTING]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Carga Stage\OPR.Outputs[OLE DB Source Error Output].Columns[POSTING]"
+                      name="POSTING" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Carga Stage.Paths[OLE DB Source Output]"
+              endId="Package\Carga Stage\Carga Stage.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Carga Stage\OPR.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Delete Periodo Stage"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{11e69162-3a9c-4067-bcfd-7b154c5b6a97}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete Periodo Stage"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="delete from stg.ST_FT_OPR_DETALLE_CUENTA&#xA;where periodo = cast(? as varchar)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vIdMes"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Mapping DW (Opr)"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C2A339F7-A1BF-42E9-B22C-E1E582EB5ABD}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Mapping DW (Opr)"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="exec etl.map_ft_opr ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vIdBatch"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::vIdMes"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Mapping DW (Prorrateos)"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{a4c05b30-a5b6-4261-9506-e3229bc55b71}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Mapping DW (Prorrateos)"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="exec etl.map_ft_opr_prorrateo ? , ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vIdBatch"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::vIdMes"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Mapping DW (Totales)"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{f9852559-def6-4852-a390-165b65b45ddf}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Mapping DW (Totales)"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="exec etl.map_ft_opr_totales ? , ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vIdBatch"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::vIdMes"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Obtiene Parametros"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{30F6E624-D8C8-4F20-9DA6-3126B236B269}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Obtiene Parametros"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:SqlStatementSource="select cast(etl.fn_getIdBatchActual( proceso ) as int) as IdBatch,&#xA;&#x9;cast(etl.fn_getParamProceso ( proceso, 'idMes') as int) idMes&#xA;from (select ? as proceso) x"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="IdBatch"
+            SQLTask:DtsVariableName="User::vIdBatch" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="IdMes"
+            SQLTask:DtsVariableName="User::vIdMes" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vProceso"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{FE671C51-FAED-4D3A-8F13-A6AD47FE7E48}"
+      DTS:From="Package\Obtiene Parametros"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Delete Periodo Stage" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{5E8525F5-F69F-4016-82E9-B912A123AA5C}"
+      DTS:From="Package\Delete Periodo Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Carga Stage" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{48E962DA-5DF0-4251-BEC3-8EE28C87F141}"
+      DTS:From="Package\Carga Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 2"
+      DTS:To="Package\Mapping DW (Opr)" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{F87D1E47-D3D5-4A70-A87F-65CE931FF5A2}"
+      DTS:From="Package\Mapping DW (Opr)"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 3"
+      DTS:To="Package\Mapping DW (Prorrateos)" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{E59EB5FE-1176-4967-AFA0-8DA6FDDE441A}"
+      DTS:From="Package\Mapping DW (Prorrateos)"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 4"
+      DTS:To="Package\Mapping DW (Totales)" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{C0A5735A-A1C1-4769-8159-19F76838799C}"
+      DTS:EventID="6226036"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{61EFDD45-9637-44E4-AD7A-7CF82F811A7C}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Registrar Error DTS"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1B07BFB4-1EA0-4322-A2D4-396CF394A7D7}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Registrar Error DTS"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+              SQLTask:SqlStatementSource="etl.prc_log_error_DTS ?, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::vIdBatch"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="137,42"
+          Id="Package\Carga Stage"
+          TopLeft="193.11320754717,193.037735849057" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Mapping DW (Opr)"
+          TopLeft="299.783018867925,282.820754716981" />
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Mapping DW (Prorrateos)"
+          TopLeft="284.688679245283,355.820754716981" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\Mapping DW (Totales)"
+          TopLeft="292.688679245283,428.820754716981" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Obtiene Parametros"
+          TopLeft="30.688679245283,38.5754716981132" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\Delete Periodo Stage"
+          TopLeft="111,122" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="101.188679245283,80.5754716981132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="101.311320754717,41.4245283018868"
+              Start="0,0"
+              End="101.311320754717,33.9245283018868">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.7122641509434" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.7122641509434"
+                    Point2="0,20.7122641509434"
+                    Point3="4,20.7122641509434" />
+                  <mssgle:LineSegment
+                    End="97.311320754717,20.7122641509434" />
+                  <mssgle:CubicBezierSegment
+                    Point1="97.311320754717,20.7122641509434"
+                    Point2="101.311320754717,20.7122641509434"
+                    Point3="101.311320754717,24.7122641509434" />
+                  <mssgle:LineSegment
+                    End="101.311320754717,33.9245283018868" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="202.5,164">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="59.11320754717,29.037735849057"
+              Start="0,0"
+              End="59.11320754717,21.537735849057">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.5188679245285" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.5188679245285"
+                    Point2="0,14.5188679245285"
+                    Point3="4,14.5188679245285" />
+                  <mssgle:LineSegment
+                    End="55.11320754717,14.5188679245285" />
+                  <mssgle:CubicBezierSegment
+                    Point1="55.11320754717,14.5188679245285"
+                    Point2="59.11320754717,14.5188679245285"
+                    Point3="59.11320754717,18.5188679245285" />
+                  <mssgle:LineSegment
+                    End="59.11320754717,21.537735849057" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 2]"
+          TopLeft="261.61320754717,235.037735849057">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="123.669811320755,47.783018867924"
+              Start="0,0"
+              End="123.669811320755,40.283018867924">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.891509433962" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.891509433962"
+                    Point2="0,23.891509433962"
+                    Point3="4,23.891509433962" />
+                  <mssgle:LineSegment
+                    End="119.669811320755,23.891509433962" />
+                  <mssgle:CubicBezierSegment
+                    Point1="119.669811320755,23.891509433962"
+                    Point2="123.669811320755,23.891509433962"
+                    Point3="123.669811320755,27.891509433962" />
+                  <mssgle:LineSegment
+                    End="123.669811320755,40.283018867924" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 3]"
+          TopLeft="385.985849056604,324.820754716981">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31"
+              Start="0,0"
+              End="0,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 4]"
+          TopLeft="386.938679245283,397.820754716981">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31"
+              Start="0,0"
+              End="0,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Registrar Error DTS"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\Carga Stage">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Carga Stage\Carga Stage"
+          TopLeft="167.839622641509,138.481132075472" />
+        <NodeLayout
+          Size="103,42"
+          Id="Package\Carga Stage\OPR"
+          TopLeft="46.5,9.5" />
+        <EdgeLayout
+          Id="Package\Carga Stage.Paths[OLE DB Source Output]"
+          TopLeft="98,51.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="140.339622641509,86.981132075472"
+              Start="0,0"
+              End="140.339622641509,79.481132075472">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.490566037736" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39.490566037736"
+                    Point2="0,43.490566037736"
+                    Point3="4,43.490566037736" />
+                  <mssgle:LineSegment
+                    End="136.339622641509,43.490566037736" />
+                  <mssgle:CubicBezierSegment
+                    Point1="136.339622641509,43.490566037736"
+                    Point2="140.339622641509,43.490566037736"
+                    Point3="140.339622641509,47.490566037736" />
+                  <mssgle:LineSegment
+                    End="140.339622641509,79.481132075472" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga Stage\Carga Stage">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga Stage\OPR">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

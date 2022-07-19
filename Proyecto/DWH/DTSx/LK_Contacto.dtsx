@@ -1,0 +1,1383 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/4/2014 2:15:13 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ADECCOSQL5"
+  DTS:CreatorName="ADECCOSQL5\luciano.silvera"
+  DTS:DelayValidation="True"
+  DTS:DTSID="{75E463CA-4912-4837-9DF9-8DFDB6329B2F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="LK_Contacto"
+  DTS:PackageType="5"
+  DTS:VersionBuild="78"
+  DTS:VersionGUID="{52775E8B-D289-4836-92A8-EA9280EA9945}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{858C5EA3-FD3D-4660-A4F5-CE158E465B7C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="vIdBatch">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{81D7533B-2F89-4D23-B3B5-7149D72EC411}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="vProceso">
+      <DTS:VariableValue
+        DTS:DataType="8">LK_CONTACTO</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Carga Stage"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{46F5A943-DE99-4905-AFAD-C38FDEBF0408}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Carga Stage"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          engineThreads="5"
+          version="1">
+          <components>
+            <component
+              refId="Package\Carga Stage\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stg].[ST_DGEN_LK_CONTACTOS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destinaton. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga Stage\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{C978FAC7-8888-40C7-8E55-7F76F377E886}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[COD_PAIS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="COD_PAIS"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_PAIS]"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[COD_PAIS]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[GUID_CONTACTO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="GUID_CONTACTO"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GUID_CONTACTO]"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[GUID_CONTACTO]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CUENTA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="CUENTA"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CUENTA]"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[CUENTA]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CUIT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="CUIT"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CUIT]"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[CUIT]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_CT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="NOMBRE_CT"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CT]"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_CT]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[APELLIDO_CT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="APELLIDO_CT"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[APELLIDO_CT]"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[APELLIDO_CT]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TITULO_CT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="TITULO_CT"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TITULO_CT]"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[TITULO_CT]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FUNCION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="FUNCION"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FUNCION]"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[FUNCION]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DEPARTAMENTO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="DEPARTAMENTO"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DEPARTAMENTO]"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[DEPARTAMENTO]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CALLE_CT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="CALLE_CT"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CALLE_CT]"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[CALLE_CT]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CIUDAD_CT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="CIUDAD_CT"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CIUDAD_CT]"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[CIUDAD_CT]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PROVINCIA_CT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="PROVINCIA_CT"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PROVINCIA_CT]"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[PROVINCIA_CT]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[COD_POSTAL_CT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="COD_POSTAL_CT"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_POSTAL_CT]"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[COD_POSTAL_CT]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TELEFONO_CT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="TELEFONO_CT"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TELEFONO_CT]"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[TELEFONO_CT]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FAX_CT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="FAX_CT"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FAX_CT]"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[FAX_CT]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CELULAR_CT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="CELULAR_CT"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CELULAR_CT]"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[CELULAR_CT]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EMAIL_CT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="EMAIL_CT"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EMAIL_CT]"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[EMAIL_CT]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ACEPTA_PART_CT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="ACEPTA_PART_CT"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ACEPTA_PART_CT]"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[ACEPTA_PART_CT]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CONTACTO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="CONTACTO"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CONTACTO]"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[CONTACTO]" />
+                    <inputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PROPIETARIO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="PROPIETARIO"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PROPIETARIO]"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[PROPIETARIO]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_CARGA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="FECHA_CARGA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_PAIS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="COD_PAIS" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GUID_CONTACTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="GUID_CONTACTO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CUENTA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CUIT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CUIT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NOMBRE_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[APELLIDO_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="APELLIDO_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TITULO_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TITULO_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FUNCION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="FUNCION" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DEPARTAMENTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DEPARTAMENTO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CALLE_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CALLE_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CIUDAD_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CIUDAD_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PROVINCIA_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="PROVINCIA_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_POSTAL_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="COD_POSTAL_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TELEFONO_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TELEFONO_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FAX_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="FAX_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CELULAR_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CELULAR_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EMAIL_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="EMAIL_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ACEPTA_PART_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="ACEPTA_PART_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CONTACTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CONTACTO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PROPIETARIO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="PROPIETARIO" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga Stage\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga Stage\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga Stage\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga Stage\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select COD_PAIS,	
+	ID_CONTACTO as GUID_CONTACTO,
+	CUENTA,
+	CUIT, 
+	NOMBRE_CT, 
+	APELLIDO_CT, 
+	TITULO_CT,
+	FUNCION, DEPARTAMENTO,
+	CALLE_CT, CIUDAD_CT,
+	PROVINCIA_CT, 
+	COD_POSTAL_CT, 
+	TELEFONO_CT, FAX_CT,
+	CELULAR_CT, EMAIL_CT, 
+	ACEPTA_PART_CT, CONTACTO, 
+	PROPIETARIO
+from dbo.vw_mx_lk_contactos_sf
+where id_contacto is not null</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga Stage\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{8C8B2F7F-FCDF-4D91-9B18-ABF903AFFACE}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SrcSF]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[COD_PAIS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[COD_PAIS]"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[COD_PAIS]"
+                      name="COD_PAIS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[GUID_CONTACTO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GUID_CONTACTO]"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[GUID_CONTACTO]"
+                      name="GUID_CONTACTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CUENTA]"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[CUENTA]"
+                      name="CUENTA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[CUIT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CUIT]"
+                      length="8000"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[CUIT]"
+                      name="CUIT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_CT]"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_CT]"
+                      name="NOMBRE_CT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[APELLIDO_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[APELLIDO_CT]"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[APELLIDO_CT]"
+                      name="APELLIDO_CT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[TITULO_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TITULO_CT]"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[TITULO_CT]"
+                      name="TITULO_CT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[FUNCION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FUNCION]"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[FUNCION]"
+                      name="FUNCION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[DEPARTAMENTO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DEPARTAMENTO]"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[DEPARTAMENTO]"
+                      name="DEPARTAMENTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[CALLE_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CALLE_CT]"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[CALLE_CT]"
+                      name="CALLE_CT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[CIUDAD_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CIUDAD_CT]"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[CIUDAD_CT]"
+                      name="CIUDAD_CT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[PROVINCIA_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PROVINCIA_CT]"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[PROVINCIA_CT]"
+                      name="PROVINCIA_CT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[COD_POSTAL_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[COD_POSTAL_CT]"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[COD_POSTAL_CT]"
+                      name="COD_POSTAL_CT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[TELEFONO_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TELEFONO_CT]"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[TELEFONO_CT]"
+                      name="TELEFONO_CT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[FAX_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FAX_CT]"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[FAX_CT]"
+                      name="FAX_CT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[CELULAR_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CELULAR_CT]"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[CELULAR_CT]"
+                      name="CELULAR_CT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[EMAIL_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EMAIL_CT]"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[EMAIL_CT]"
+                      name="EMAIL_CT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[ACEPTA_PART_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ACEPTA_PART_CT]"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[ACEPTA_PART_CT]"
+                      name="ACEPTA_PART_CT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[CONTACTO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CONTACTO]"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[CONTACTO]"
+                      name="CONTACTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[PROPIETARIO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PROPIETARIO]"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].Columns[PROPIETARIO]"
+                      name="PROPIETARIO"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[COD_PAIS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="COD_PAIS" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GUID_CONTACTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="GUID_CONTACTO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CUENTA" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CUIT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="CUIT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="NOMBRE_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[APELLIDO_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="APELLIDO_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TITULO_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TITULO_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FUNCION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="FUNCION" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DEPARTAMENTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="DEPARTAMENTO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CALLE_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CALLE_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CIUDAD_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CIUDAD_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PROVINCIA_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="PROVINCIA_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[COD_POSTAL_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="COD_POSTAL_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TELEFONO_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TELEFONO_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FAX_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="FAX_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CELULAR_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CELULAR_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EMAIL_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="EMAIL_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ACEPTA_PART_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="ACEPTA_PART_CT" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CONTACTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CONTACTO" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PROPIETARIO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="PROPIETARIO" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[COD_PAIS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[COD_PAIS]"
+                      name="COD_PAIS" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GUID_CONTACTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GUID_CONTACTO]"
+                      name="GUID_CONTACTO" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CUENTA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CUENTA]"
+                      name="CUENTA" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CUIT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CUIT]"
+                      name="CUIT" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_CT]"
+                      name="NOMBRE_CT" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[APELLIDO_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[APELLIDO_CT]"
+                      name="APELLIDO_CT" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TITULO_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TITULO_CT]"
+                      name="TITULO_CT" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FUNCION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FUNCION]"
+                      name="FUNCION" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DEPARTAMENTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DEPARTAMENTO]"
+                      name="DEPARTAMENTO" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CALLE_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CALLE_CT]"
+                      name="CALLE_CT" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CIUDAD_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CIUDAD_CT]"
+                      name="CIUDAD_CT" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PROVINCIA_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PROVINCIA_CT]"
+                      name="PROVINCIA_CT" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[COD_POSTAL_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[COD_POSTAL_CT]"
+                      name="COD_POSTAL_CT" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TELEFONO_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TELEFONO_CT]"
+                      name="TELEFONO_CT" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FAX_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FAX_CT]"
+                      name="FAX_CT" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CELULAR_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CELULAR_CT]"
+                      name="CELULAR_CT" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EMAIL_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EMAIL_CT]"
+                      name="EMAIL_CT" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ACEPTA_PART_CT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ACEPTA_PART_CT]"
+                      name="ACEPTA_PART_CT" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CONTACTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CONTACTO]"
+                      name="CONTACTO" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PROPIETARIO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PROPIETARIO]"
+                      name="PROPIETARIO" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Carga Stage.Paths[OLE DB Source Output]"
+              endId="Package\Carga Stage\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Carga Stage\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Mapping DW"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5B624A7C-8EBD-42E8-AAAA-C571B79BA488}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Mapping DW"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="exec etl.map_lk_contacto ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vIdBatch"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Obtener Parametros"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3DF5C439-A1FD-47A0-91BD-8934E7A63632}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Obtener Parametros"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:SqlStatementSource="select cast(etl.fn_getIdBatchActual( ? ) as int) as IdBatch"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="IdBatch"
+            SQLTask:DtsVariableName="User::vIdBatch" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::vProceso"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncar Stage"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{138E7C59-6C35-4250-BAD5-27EC7CAB5C41}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncar Stage"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="truncate table stg.ST_DGEN_LK_CONTACTOS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{5DC82721-D1B6-458A-B822-F8A047975BEA}"
+      DTS:From="Package\Truncar Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Carga Stage" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{6AC8B908-9ABA-41B2-83E0-8597E840396B}"
+      DTS:From="Package\Carga Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Mapping DW" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{12DEEAF5-2F60-40EC-B288-E74786A0D255}"
+      DTS:From="Package\Obtener Parametros"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Truncar Stage" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{87E32E0B-1551-463F-84E1-A2766B6E935C}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{53F718C0-EDAF-412E-8524-E5F9D5964856}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Registrar Error DTS"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{846A2BA1-31BD-4CFA-8169-94587FF302E6}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Registrar Error DTS"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C978FAC7-8888-40C7-8E55-7F76F377E886}"
+              SQLTask:SqlStatementSource="etl.prc_log_error_DTS ?, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::vIdBatch"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="138,44"
+          Id="Package\Carga Stage"
+          TopLeft="135.537735849057,237.764150943396" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Mapping DW"
+          TopLeft="192.216981132075,325.877358490566" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Obtener Parametros"
+          TopLeft="36.4433962264151,81.1603773584906" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Truncar Stage"
+          TopLeft="86.3301886792453,160.179245283019" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="154.216981132075,204.103773584906">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="50.188679245283,33.6603773584906"
+              Start="0,0"
+              End="50.188679245283,26.1603773584906">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.8301886792453" />
+                  <mssgle:LineSegment
+                    End="50.188679245283,16.8301886792453" />
+                  <mssgle:LineSegment
+                    End="50.188679245283,26.1603773584906" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="204.405660377358,281.688679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="55.6981132075472,44.188679245283"
+              Start="0,0"
+              End="55.6981132075472,36.688679245283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.0754716981132" />
+                  <mssgle:LineSegment
+                    End="55.6981132075472,22.0754716981132" />
+                  <mssgle:LineSegment
+                    End="55.6981132075472,36.688679245283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="104.330188679245,125.084905660377">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="49.8867924528302,35.0943396226415"
+              Start="0,0"
+              End="49.8867924528302,27.5943396226415">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5471698113207" />
+                  <mssgle:LineSegment
+                    End="49.8867924528302,17.5471698113207" />
+                  <mssgle:LineSegment
+                    End="49.8867924528302,27.5943396226415" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="136,44"
+          Id="Package.EventHandlers[OnError]\Registrar Error DTS"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\Carga Stage">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Carga Stage\OLE DB Source"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Carga Stage\OLE DB Destination"
+          TopLeft="187.198113207547,145.27358490566" />
+        <EdgeLayout
+          Id="Package\Carga Stage.Paths[OLE DB Source Output]"
+          TopLeft="73.3867924528302,49.4245283018868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="181.698113207547,95.8490566037736"
+              Start="0,0"
+              End="181.698113207547,88.3490566037736">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.9245283018868" />
+                  <mssgle:LineSegment
+                    End="181.698113207547,47.9245283018868" />
+                  <mssgle:LineSegment
+                    End="181.698113207547,88.3490566037736" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga Stage\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga Stage\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
