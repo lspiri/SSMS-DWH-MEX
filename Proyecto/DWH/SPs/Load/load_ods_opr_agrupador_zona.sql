@@ -16,6 +16,7 @@ begin
 	-- Description:	Carga Archivo CC OPR Agrupadores
 	-- =============================================
 	-- 02/06/2022 - Version Inicial
+	-- 20/07/2022 - LS - Orden Present Validacion
 	
 	set nocount on
 
@@ -94,7 +95,7 @@ begin
 					insert into #cc_opr (id_mes, orden_present, cod_cc, cod_agrupador,
 						descripcion, desc_zona, dir_prorrateo, Allocation) 
 					select '+cast(@idMesCarga as varchar)+' as id_mes,
-						present as orden_present,
+						case when isNumeric(present) = 0 or present is null then 0 else present end as orden_present,
 						cast(replace([CC ORIGEN],''MX_'','''') as varchar(30)) as cod_cc,
 						cast(replace(AGRUPADOR,''MX_'','''') as varchar(30)) as cod_agrupador,	
 						cast(DESCRIPCION as varchar(255)) as descripcion,
@@ -175,4 +176,4 @@ begin
 	end catch
 end
 GO
--- exec etl.load_ods_opr_agrupador_zona 0, 202204
+-- exec etl.load_ods_opr_agrupador_zona 0, 202206
