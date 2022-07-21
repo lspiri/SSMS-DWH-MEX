@@ -39,12 +39,10 @@ where 1=1
 	AND tow.IsActive=1
 	AND Subtype__c NOT IN ('')
 	AND (WhoId is not null OR  WhatId is not null)
-	AND Convert(date, ActivityDateTime) BETWEEN DATEADD(mm, DATEDIFF(mm, 0, GETDATE()) -3, 0) AND DATEADD (dd, -1, DATEADD(mm, DATEDIFF(mm, 0, GETDATE()) + 1, 0))
-	--and ActivityDateTime between DATEADD(dd,  0, DATEADD(ww, DATEDIFF(ww, 0, DATEADD(dd, -1, CURRENT_TIMESTAMP)) - 1, 0)) and DATEADD(dd,  6, DATEADD(ww, DATEDIFF(ww, 0, DATEADD(dd, -1, CURRENT_TIMESTAMP)) - 1, 0))
+	AND Convert(date, ActivityDateTime) BETWEEN DATEADD(mm, DATEDIFF(mm, 0, GETDATE()) -6, 0) AND DATEADD (dd, -1, DATEADD(mm, DATEDIFF(mm, 0, GETDATE()) + 1, 0))
 	AND tv.EventSubtype='Event'
 	AND tv.IsDeleted='0'
 	and tc.Segmentation__c not in ('Large','Public Sector & Not Classified')
 	and Type__c in ('Sales Visit','Admin-Service Visit')
-
 
 -- select * from vw_mx_ft_visitas_sf where TECH_GUID = '1c03e98b-6cc4-4643-9246-fa2cd0255e55'
