@@ -17,6 +17,7 @@ begin
 	-- Description:	Mapping FT_OPR - Calculo Totales
 	-- =============================================
 	-- 14/07/2022 - Version Inicial
+	-- 22/07/2022 - LS - Ajuste Allocation Branch
 	
 	set nocount on
 
@@ -57,7 +58,8 @@ begin
 			cast(0 as numeric(22,4)) as real_den,
 			cast(0 as numeric(22,4)) as budget_num,
 			cast(0 as numeric(22,4)) as budget_den,
-			0 as division
+			0 as division,
+			0 as flag
 		into #total_ln2
 		from dbo.FT_OPR_DETALLE_CUENTA ft,
 			dbo.DESG_LK_LINEA lk
@@ -82,7 +84,7 @@ begin
 		
 		create unique index #total_ln2_uk on #total_ln2 (
 			id_mes, id_linea2, id_cc_orig, 
-			id_cc_opr, id_cliente, id_subclte, id_empresa)
+			id_cc_opr, id_cliente, id_subclte, id_empresa, flag)
 
 		------------
 		-- CALCULO
@@ -229,10 +231,10 @@ begin
 
 					insert into #total_ln2 (origen, id_linea2, real, budget,
 						id_mes, id_cc_orig, id_cc_opr, id_cliente, id_subclte, id_empresa,
-						real_num, real_den, budget_num, budget_den, division)
+						real_num, real_den, budget_num, budget_den, division, flag)
 					values ('CALC', @id_linea2, @total, @total_budget,
 						@id_mes, @id_cc_orig, @id_cc_opr, @id_cliente, @id_subclte, @id_empresa,
-						@real_num, @real_den, @budget_num, @budget_den, @division)
+						@real_num, @real_den, @budget_num, @budget_den, @division, 0)
 
 					-- next
 					fetch next from lc_datos into @id_mes, @id_cc_orig, @id_cc_opr, @id_cliente, @id_subclte, @id_empresa
@@ -251,12 +253,27 @@ begin
 			set @msg = '- Fin del Calculo: ' + etl.fn_tiempo(@inicio, getdate()); exec etl.prc_Logging @idBatch, @msg
 
 		
-			-- Excepcion Gasto de Operacion
-			-- Cuenta Orig: 990337 - Cuenta Dest: 999999
+			-- Excepcion Total Allocation Branch
 			-- CCs Agrup: 102980,702018,910500,910650,910660,910670,803000,101900,910620
+			
+			-- Borrar Calculos Total Allocation Branch
+			delete st
+			from #total_ln2 st,
+				dbo.VW_LK_CC_OPR_HIST cc,
+				(select * from dbo.DESG_LK_LINEA where cod_cuenta = '990350') ln,
+				dbo.DEMP_LK_EMPRESA em
+			where st.id_linea2 = ln.id_linea2
+				and st.id_mes = cc.id_mes
+				and st.id_cc_opr = cc.id_cc
+				and st.id_empresa = em.id_empresa
+				and cc.cod_agrupador in ('102980','702018','910500','910650','910660','910670','803000','101900','910620')
+				and not (em.cod_empresa = '1188' and cc.cod_agrupador = '702018') -- Solo para el Agr. 702018 en 1188 - Suma Allocation
+
+			-- Para el Conjunto de CCs - Carga el Gasto de Operacion
+			-- Cuenta Orig: 990337 - Cuenta Dest: 990350
 			insert into #total_ln2 (origen, id_linea2, real, budget,
 						id_mes, id_cc_orig, id_cc_opr, id_cliente, id_subclte, id_empresa,
-						real_num, real_den, budget_num, budget_den, division)
+						real_num, real_den, budget_num, budget_den, division, flag)
 			select 'CALC' as origen, tgt.id_linea2, 
 				st.real * -1 as real, 
 				st.budget * -1 as budget,
@@ -265,52 +282,16 @@ begin
 				st.real_den * -1 as real_den, 
 				st.budget_num * -1 as budget_num, 
 				st.budget_den * -1 as budget_den, 
-				st.division
+				st.division,
+				1 -- Impide Duplicacion PK
 			from #total_ln2 st, 
 				(select * from dbo.DESG_LK_LINEA where cod_cuenta = '990337') src, 
-				(select * from dbo.DESG_LK_LINEA where cod_cuenta = '999999') tgt,
+				(select * from dbo.DESG_LK_LINEA where cod_cuenta = '990350') tgt,
 				dbo.VW_LK_CC_OPR_HIST cc
 			where st.id_linea2 = src.id_linea2
 				and st.id_mes = cc.id_mes
 				and st.id_cc_opr = cc.id_cc
 				and cc.cod_agrupador in ('102980','702018','910500','910650','910660','910670','803000','101900','910620')
-
-			set @msg = 'Excep. Gasto de Operacion: ' + convert(varchar, @@rowcount); exec etl.prc_Logging @idBatch, @msg	
-
-			-- Excepcion Allocation Branch - Solo para el Agr. 702018 en 1188 - Suma Gasto Operacion
-			select st.id_mes, em.cod_empresa, cc.cod_agrupador, 
-				sum(real) as real, 
-				sum(budget) as budget
-			into #gasto_operacion
-			from #total_ln2 st,
-				(select * from dbo.DESG_LK_LINEA where cod_cuenta = '999999') g,
-				dbo.DEMP_LK_EMPRESA em,
-				dbo.VW_LK_CC_OPR_HIST cc
-			where st.id_linea2 = g.id_linea2
-				and st.id_empresa = em.id_empresa
-				and st.id_mes = cc.id_mes
-				and st.id_cc_opr = cc.id_cc
-				and st.origen = 'CALC'
-			group by st.id_mes, em.cod_empresa, cc.cod_agrupador
-
-			update st
-			set real = st.real + g.real
-			from #total_ln2 st,
-				(select * from dbo.DESG_LK_LINEA where cod_cuenta = '990350') ab,
-				dbo.DEMP_LK_EMPRESA em,
-				dbo.VW_LK_CC_OPR_HIST cc,
-				#gasto_operacion g
-			where st.id_linea2 = ab.id_linea2
-				and st.id_empresa = em.id_empresa
-				and st.id_mes = cc.id_mes
-				and st.id_cc_opr = cc.id_cc
-				and st.id_mes = g.id_mes
-				and em.cod_empresa = g.cod_empresa
-				and cc.cod_agrupador = g.cod_agrupador
-				and em.cod_empresa = '1188'
-				and cc.cod_agrupador = '702018'
-				and st.origen = 'CALC'
-				and (st.real != 0 )
 
 			set @msg = 'Excep. Allocation Branch: ' + convert(varchar, @@rowcount); exec etl.prc_Logging @idBatch, @msg	
 
@@ -553,4 +534,4 @@ begin
 	end catch
 end
 GO
--- exec etl.map_ft_opr_totales 0, 202204
+-- exec etl.map_ft_opr_totales 0, 202201

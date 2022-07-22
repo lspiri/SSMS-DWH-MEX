@@ -16,6 +16,7 @@ begin
 	-- Description:	Load Ajustes en OPR
 	-- =============================================
 	-- 02/06/2022 - Version Inicial
+	-- 22/07/2022 - LS - Ajuste al Tomar Periodo en Archivo
 
 	set nocount on
 
@@ -95,14 +96,14 @@ begin
 			where proceso = @proceso
 				and procesado = 'N'
 
-
 			declare lc_cursor cursor for
 			select archivo,
 				@dir + archivo as path,
-				right(replace(archivo,'.xlsx',''),6) as periodo
+				substring(archivo,12,6) as periodo
 			from #tmpArchivo
 			order by 1
-		
+
+			
 			open lc_cursor
 			fetch next from lc_cursor into @archivo, @path, @periodo_archivo
 			while @@fetch_status = 0
